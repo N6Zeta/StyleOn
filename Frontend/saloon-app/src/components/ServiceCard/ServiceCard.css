@@ -1,0 +1,22 @@
+.service-main{
+    border: 1px solid rgb(100, 94, 94);
+
+}
+.service-description{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+.service-main img{
+    width:100% ;
+}
+.service-main .discounted-price{
+    margin-left: 3%;
+}
+
+.original-price{
+    text-decoration: line-through;
+    opacity: 0.9;
+}

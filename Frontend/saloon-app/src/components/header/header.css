@@ -1,0 +1,23 @@
+.header-main{
+    background-color: black;
+    color: cornsilk;
+    width: 95vw;
+    padding: 2.5% 2.5% 1% 2.5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.brand-name{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-size: 2em;
+    margin: 0;
+}
+
+.login-link{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-size: 1.7em; 
+    margin: 0;
+
+}
