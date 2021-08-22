@@ -1,8 +1,8 @@
 .header-main{
     background-color: black;
     color: cornsilk;
-    width: 95vw;
-    padding: 2.5% 2.5% 1% 2.5%;
+    width: 95%;
+    padding: 1.5% 2.5% 1% 2.5%;
     display: flex;
     justify-content: space-between;
 }

@@ -1,0 +1,45 @@
+.carousel{
+    display: flex;
+    margin: 2% auto;
+  border: 1px solid #e0dede;
+  padding: 0;
+  width: 90%;
+  justify-content: space-between;
+  background-color: #dee1e7;
+
+}
+
+.featured-items{
+  display: flex;
+  overflow: auto;
+  justify-content:space-between;
+  /* min-height: 30vh; */
+  padding: 2%;
+  gap: 2%;
+  width: 80%;
+  /* height: 600px; */
+  /* flex-wrap: wrap; */
+  /* flex-direction: row; */
+  /* width: 30%; */
+}
+
+
+.featured-items::-webkit-scrollbar {
+    display: none;
+  }
+
+.featured-items>div{
+    min-width: 20%;
+}
+
+.scroll-buttons{
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+}
+
+.scroll-buttons:hover{
+    color: blue;
+    transform: scale(1.4);
+    font-weight: bold;
+}

@@ -1,0 +1,48 @@
+.hero-main{
+    width: 100%;
+    height: 45vh;
+    background-image: linear-gradient(black,black);
+    background-size: cover;
+    background-blend-mode: saturation;
+    /* filter: grayscale(90%); */
+}
+
+.hero-header{
+    text-align: center;
+    font-size: 10vh;
+    color:rgb(0, 0, 0);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    position: relative;
+    top: 4vh;
+}
+
+.hero-main input[type='text']{
+    width: 25%;
+    padding: 0.7%;
+    font-size: large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.hero-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 10vh auto 0 auto;
+    justify-content: center;
+}
+
+.hero-inputs button{
+    padding: 1vh;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width:40%;
+    filter: grayscale(0);
+    font-size: 1.4em;
+    margin: 0;
+}
