@@ -3,7 +3,11 @@ const router = express.Router();
 const productController = require('../controllers/product.controller');
 // const { checkToken } = require("../../../utils/jwt");
 
-console.log("calledd product router")
-router.get('/', productController.getproductData);
+
+router.get('/', productController.getProductData);
+router.post('/create', productController.createProductData);
+router.put('/update', productController.updateProductData);
+router.delete('/delete', productController.deleteProductData);
 
 module.exports = router;
+ 

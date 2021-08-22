@@ -3,7 +3,7 @@ const router = express.Router();
 const homeController = require('../controllers/home.controller');
 // const { checkToken } = require("../../../utils/jwt");
 
-console.log("calledd home router")
+
 router.get('/', homeController.getHomepageData);
 
 module.exports = router;

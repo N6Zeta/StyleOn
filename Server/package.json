@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "netlify-lambda serve index",
-    "dev": "env-cmd -f env/local.env netlify-lambda serve index",
+    "start": "env-cmd -f env/local.env netlify-lambda serve index",
+    "dev": "env-cmd -f env/local.env nodemon index/api.js",
     "build": "env-cmd -f env/prod.env netlify-lambda build server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "algoliasearch": "^4.10.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase": "^8.10.0",
+    "firebase-admin": "^9.11.1",
     "netlify-lambda": "^2.0.14",
     "serverless-http": "^2.7.0"
   },

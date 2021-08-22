@@ -1,12 +1,47 @@
-const express = require('express');
 const productServices = require('../../services/product.service');
 // const { checkToken } = require("../../../utils/jwt");
 
-const getproductData = async (req,res) => {
+const getProductData = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await productServices.getproductData({
+    const response = await productServices.getProductData({
+        ...params,
+        ...queryParams,
+        ...bodyParams
+    });
+    return res.status(200).send(response);
+}
+
+const createProductData = async (req,res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await productServices.createProductData({
+        ...params,
+        ...queryParams,
+        ...bodyParams
+    });
+    return res.status(200).send(response);
+}
+
+const updateProductData = async (req,res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await productServices.updateProductData({
+        ...params,
+        ...queryParams,
+        ...bodyParams
+    });
+    return res.status(200).send(response);
+}
+
+const deleteProductData = async (req,res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await productServices.deleteProductData({
         ...params,
         ...queryParams,
         ...bodyParams
@@ -15,5 +50,8 @@ const getproductData = async (req,res) => {
 }
 
 module.exports = {
-    getproductData
+    getProductData,
+    createProductData,
+    updateProductData,
+    deleteProductData
 }

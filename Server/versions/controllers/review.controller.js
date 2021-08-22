@@ -1,11 +1,11 @@
-const salonServices = require('../../services/salon.service');
+const reviewServices = require('../../services/review.service');
 // const { checkToken } = require("../../../utils/jwt");
 
-const getSalonData = async (req,res) => {
+const getReviews = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await salonServices.getSalonData({
+    const response = await reviewServices.getReviews({
         ...params,
         ...queryParams,
         ...bodyParams
@@ -13,11 +13,11 @@ const getSalonData = async (req,res) => {
     return res.status(200).send(response);
 }
 
-const createSalonData = async (req,res) => {
+const createReview = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await salonServices.createSalonData({
+    const response = await reviewServices.createReview({
         ...params,
         ...queryParams,
         ...bodyParams
@@ -25,11 +25,11 @@ const createSalonData = async (req,res) => {
     return res.status(200).send(response);
 }
 
-const updateSalonData = async (req,res) => {
+const updateReview = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await salonServices.updateSalonData({
+    const response = await reviewServices.updateReview({
         ...params,
         ...queryParams,
         ...bodyParams
@@ -37,11 +37,11 @@ const updateSalonData = async (req,res) => {
     return res.status(200).send(response);
 }
 
-const deleteSalonData = async (req,res) => {
+const deleteReview = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await salonServices.deleteSalonData({
+    const response = await reviewServices.deleteReview({
         ...params,
         ...queryParams,
         ...bodyParams
@@ -50,8 +50,8 @@ const deleteSalonData = async (req,res) => {
 }
 
 module.exports = {
-    getSalonData,
-    createSalonData,
-    updateSalonData,
-    deleteSalonData
+    getReviews,
+    createReview,
+    updateReview,
+    deleteReview
 }

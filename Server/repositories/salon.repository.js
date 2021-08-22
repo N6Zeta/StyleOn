@@ -1,17 +1,71 @@
-//Model will be imported( firestore )
+const salonModel = require("../models/salon.model")
 
-const getsalonpageData = async (res,req) => {
-    /* 
-        query to fetch data from firestore
-        return the data to the service layer
+const getSalonData = async (params) => {
+    try {
+        const snapshot = await salonModel.get();
+        let salonData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return salonData;
+    } catch (e) {
+        console.log(e);
+    }
+}
 
-    */
-    console.log("calledd salon repo")
-    const response = true;
-    return response
+const createSalonData = async (params) => {
+    try {
+        return await salonModel.add(params)
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+const updateSalonData = async (params) => {
+    console.log("updateSalonData params", params)
+    let salon;
+    try{
+        await salonModel.where('salon_id','==', params.salon_id)
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc=> {
+                doc.ref.update(params)
+                salon =  {...doc.data(), ...params, id:doc.id}
+            });
+        })        
+        .catch(err => {
+            console.log(err)
+        })
+    }catch (e) { 
+        console.log(e);
+    }
+    return salon;
+}
+
+const deleteSalonData = async (params) => {
+    let salon
+    try{
+        await salonModel.where('salon_id','==', params.salon_id)
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc=> {
+                doc.ref.delete()
+                salon = doc.id
+            });
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }catch (e) {
+        console.log(e);
+    }
+    return salon;
 }
 
 
 module.exports = {
-    getsalonpageData
+    getSalonData,
+    createSalonData,
+    updateSalonData,
+    deleteSalonData
 }
+
+
+
