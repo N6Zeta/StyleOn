@@ -67,3 +67,24 @@ module.exports = {
     updateProductData,
     deleteProductData
 }
+
+
+// Demo Json 
+// {
+//     "product_id" :716,
+//     "images" :["","","",""],
+//     "description" : "skin care" ,
+//     "product_name" : "mask" ,
+//     "brand_name" : "loreal" ,
+//     "category" : "skin" ,
+//     "suitable" : "unisex" ,
+//     "active" :true,
+//     "original_price" :100,
+//     "discounted_price" :70,
+//     "rating" :4,
+//     "review_id" : [1,2,3,4,5],
+//     "recommendations" :[1,2,3,4],
+//     "featured" :true
+// } 
+
+    

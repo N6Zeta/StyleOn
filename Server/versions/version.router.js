@@ -27,7 +27,7 @@ router.use("/review", reviewRouter);
 router.use("/booking", bookingRouter);
 router.use("/user", userRouter);
 router.use("/order", orderRouter);
-router.use("/grooming", groomingServiceRouter);
+router.use("/service", groomingServiceRouter);
 
 
 

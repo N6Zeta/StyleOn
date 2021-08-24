@@ -67,5 +67,24 @@ module.exports = {
     deleteSalonData
 }
 
+// Demo Json 
+// {
+// 	"salon_id": 4,
+// 	"name": "Fresh",
+// 	"hero_image": "https",
+// 	"pictures": ["", ""],
+// 	"reviews": [6, 7, 8, 9, 10],
+// 	"active": true,
+// 	"address": {
+// 		"door_no": "",
+// 		"street": "",
+// 		"district": "",
+// 		"state": "",
+// 		"pincode": 641005
+// 	},
+// 	"timings": "10AM - 10PM",
+// 	"services": [1, 2, 3, 4, 5],
+// 	"description": "exclusive salon"
+// }
 
 

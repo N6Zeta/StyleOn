@@ -11,10 +11,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.text());
 app.use(cors());
 
+//Redirect to routes
 app.use("/.netlify/functions/api", versionRouter);
 
 
-6
+
 app.listen(PORT, () => {
     console.log("Log in service is listening at PORT ", PORT);
 });

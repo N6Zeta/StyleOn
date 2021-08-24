@@ -20,6 +20,10 @@ const getSalonData = async () => {
     }
 }
 
+/* 
+    @createIndex Methods  - Save the data in algolia index
+
+*/
 const createSalonData = async (params) => {
     console.log("calledd Salon service")
     try {
@@ -36,6 +40,10 @@ const createSalonData = async (params) => {
     }
 }
 
+/* 
+    @updateIndex Methods  - update the data in algolia index
+
+*/
 const updateSalonData = async (params) => {
     console.log("calledd Salon service")
     try {
@@ -52,6 +60,10 @@ const updateSalonData = async (params) => {
     }
 }
 
+/* 
+    @deleteIndex Methods  - Delete the data from algolia index
+
+*/
 const deleteSalonData = async (params) => {
     console.log("calledd Salon service")
     try {

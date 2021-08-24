@@ -1,24 +1,88 @@
 const groomingServiceRepo = require("../repositories/groomingServices.repository");
-const {GET_SUCCESS,
-    GET_FAILED,
-    POST_SUCCESS,
-    POST_FAILED
+const {createIndex, updateIndex, deleteIndex} = require("../utils/algolia/algolia");
+const {GET_SUCCESS,GET_FAILED,POST_SUCCESS,POST_FAILED,DELETE_SUCCESS,DELETE_FAILED,
+    UPDATE_SUCCESS,
+    UPDATE_FAILED,
 } = require("../constants/constant")
 
 const getGroomingServiceData = async () => {
+    console.log("calledd GroomingService service")
     try {
         const response = await groomingServiceRepo.getGroomingServiceData();
         if (response) {
             return {status: 1, message: GET_SUCCESS, response};
         } else {
-            return {status: 0, message: GET_FAILED};
+            return {status: 0, message: GET_FAILED };
         }
     } catch (err) {
         console.log(err)
     }
 }
 
+/* 
+    @createIndex Methods  - Save the data in algolia index
+
+*/
+const createGroomingServiceData = async (params) => {
+    console.log("calledd GroomingService service")
+    try {
+        const response = await groomingServiceRepo.createGroomingServiceData(params);
+        console.log("response",response)
+        if (response) {
+            createIndex(params,response,"Grooming_service");
+            return {status: 1, message: POST_SUCCESS, data:response};
+        } else {
+            return {status: 0, message: POST_FAILED };
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+/* 
+    @updateIndex Methods  - update the data in algolia index
+
+*/
+const updateGroomingServiceData = async (params) => {
+    console.log("calledd GroomingService service")
+    try {
+        const response = await groomingServiceRepo.updateGroomingServiceData(params);
+        console.log("response", response)
+        if (response) {
+            updateIndex(response,"Grooming_service");
+            return {status: 1, message: UPDATE_SUCCESS, data:response};
+        } else {
+            return {status: 0, message: UPDATE_FAILED};
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+/* 
+    @deleteIndex Methods  - Delete the data from algolia index
+
+*/
+const deleteGroomingServiceData = async (params) => {
+    console.log("calledd GroomingService service")
+    try {
+        const response = await groomingServiceRepo.deleteGroomingServiceData(params);
+        console.log("deleteres", response);
+        if (response) {
+            deleteIndex(response,"Grooming_service");
+            return {status: 1, message: DELETE_SUCCESS, data:response};
+        } else {
+            return {status: 0, message: DELETE_FAILED};
+        }
+    } catch (err) {
+        console.log(err)
+    } 
+}
+
 
 module.exports = {
-    getGroomingServiceData
+    getGroomingServiceData,
+    createGroomingServiceData,
+    updateGroomingServiceData,
+    deleteGroomingServiceData
 }

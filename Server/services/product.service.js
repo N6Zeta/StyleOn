@@ -19,6 +19,10 @@ const getProductData = async () => {
     }
 }
 
+/* 
+    @createIndex Methods  - Save the data in algolia index
+
+*/
 const createProductData = async (params) => {
     console.log("calledd product service")
     try {
@@ -35,6 +39,10 @@ const createProductData = async (params) => {
     }
 }
 
+/* 
+    @updateIndex Methods  - update the data in algolia index
+
+*/
 const updateProductData = async (params) => {
     console.log("calledd product service")
     try {
@@ -51,6 +59,10 @@ const updateProductData = async (params) => {
     }
 }
 
+/* 
+    @deleteIndex Methods  - Delete the data from algolia index
+
+*/
 const deleteProductData = async (params) => {
     console.log("calledd product service")
     try {

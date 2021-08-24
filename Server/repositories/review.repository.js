@@ -65,4 +65,11 @@ module.exports = {
     deleteReview
 }
 
-
+// Demo json
+// {
+//     "uid":3, 
+//     "review_id":3,
+//     "title":"Service was fantastic",
+//     "review":"stylist is so friendly",
+//     "media":["","",""]
+// } 

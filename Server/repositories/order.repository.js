@@ -71,7 +71,7 @@ module.exports = {
 // Demo Json 
 // {
 // 	"order_id": 1,
-// 	"user_id": 11,
+// 	"uid": 11,
 // 	"services": [{
 // 		"service_id": 1,
 // 		"slot_details": {
