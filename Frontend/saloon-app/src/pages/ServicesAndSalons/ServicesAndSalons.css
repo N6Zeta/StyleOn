@@ -1,0 +1,12 @@
+.services-and-salons-main .items-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(25vw,1fr));
+    padding: 5vw;
+    gap: 2%;
+    margin-bottom: 15vh;
+}
+.services-and-salons-main > h1{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline;
+}

@@ -1,0 +1,26 @@
+.testimonial-header{
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+}
+
+.testimonial-main img{
+    float: left;
+    border-radius: 100px;
+    width: 3vw;
+    height: 3vw;
+}
+
+.testimonial-main{
+    background-color: white;
+    padding: 1%;
+    border-radius: 10px;
+    /* padding-top: 2%; */
+}
+
+.testimonial-header h1{
+    margin-top: 0;
+}
+
+.testimonial-header .rating-component{
+    grid-column: 1/-1;
+}
