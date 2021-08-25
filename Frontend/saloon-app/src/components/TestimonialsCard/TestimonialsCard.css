@@ -20,3 +20,7 @@
 .testimonial-header h1{
     margin-top: 0;
 }
+
+.testimonial-header .rating-component{
+    grid-column: 1/-1;
+}

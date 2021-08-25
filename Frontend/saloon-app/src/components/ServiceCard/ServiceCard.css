@@ -28,7 +28,7 @@ transition: transform 3s;
 .service-description{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     padding: 2%;
     height: 35%;
     margin: 0;
