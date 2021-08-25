@@ -6,6 +6,7 @@ const groomingServiceController = require('../controllers/groomingService.contro
 
 
 router.get('/', groomingServiceController.getGroomingServiceData);
+router.get("/marketplace", groomingServiceController.getAllServiceData);
 router.post('/create', groomingServiceController.createGroomingServiceData);
 router.put('/update', groomingServiceController.updateGroomingServiceData);
 router.delete('/delete', groomingServiceController.deleteGroomingServiceData);

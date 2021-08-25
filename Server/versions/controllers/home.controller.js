@@ -2,18 +2,18 @@ const express = require('express');
 const homeServices = require('../../services/home.service');
 // const { checkToken } = require("../../../utils/jwt");
 
-const getHomepageData = async (req,res) => {
+const getHomeData = async (req, res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await homeServices.getHomepageData({
+    const response = await homeServices.getHomeData({
         ...params,
         ...queryParams,
-        ...bodyParams
+        ...bodyParams,
     });
     return res.status(200).send(response);
-}
+};
 
 module.exports = {
-    getHomepageData
-}
+    getHomeData,
+};

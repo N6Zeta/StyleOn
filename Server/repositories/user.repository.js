@@ -1,104 +1,92 @@
 const userModel = require("../models/user.model");
 
-const getuserData = async (data) => {
-    console.log("calledd user repo")
+const getuserData = async (params) => {
+    console.log("typeof params.uid", typeof params.uid)
     try {
-        const snapshot = await userModel.get();
-        let data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        console.log("data",data);
-        return data;
-    } catch (e) {
-        throw e;
-    }
-}
+        let snapshot 
+        if(typeof params.uid === "string" || params.uid === "number")
+            snapshot= await userModel.where("uid", "==", parseInt(params.uid)).get();
+        else if (params !== undefined)
+            snapshot= await userModel.where('uid', 'in', params).get();
 
-const saveUser = async (data) => {
-    console.log("calledd saveUser  repo")
-    console.log("data", data)
+        let reviewData = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        return reviewData;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const saveUser = async (params) => {
     try {
-        let singleData = await userModel.where('email', '==', data.email.toLowerCase())
-        .get()
-        .then(snapshots => {
-            console.log("snapshots", snapshots.docs)
-            // if (snapshots.size > 0) {
-            //   snapshots.forEach(orderItem => {
-            //     userModel.doc(orderItem.email).update({ status: 1 })
-            //   })
-            // }
-        })
-        return 
+        return await userModel.add(params);
     } catch (e) {
-        throw e;
+        console.log(e);
     }
+};
 
-    // console.log("calledd saveUser  repo")
-    // console.log("data", data)
-    // try {
-    //     let singleData = await userModel.where('email', '==', data.email.toLowerCase())
-    //     .get()
-    //     .then(querySnapshot => {
-    //       if(!querySnapshot.empty) {
-    //         const user = querySnapshot.docs[0].data()
-    //         console.log("user", user);
-    //         // rest of your code 
-    //       }else{
-    //           console.log("elsee")
-    //       }
-    //     })
-
-
-    //     return 
-    // } catch (e) {
-    //     throw e;
-    // }
-}
-
-const updateUserData = async (data) => {
-    console.log("calledd saveUser  repo")
-    console.log("data", data)
+const updateUser = async (params) => {
+    console.log("update reviewData params", params);
+    let user;
     try {
-        let singleData = await userModel.where('email', '==', data.email.toLowerCase())
-        .get()
-        .then(snapshots => {
-            if (snapshots.size > 0) {
-              snapshots.forEach(orderItem => {
-                userModel.doc(orderItem.email).update({ status: 1 })
-              })
-            }
-        })
-        return 
+        await userModel
+            .where("uid", "==", params.uid)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    user = doc.ref.update(params);
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     } catch (e) {
-        throw e;
+        console.log(e);
     }
-}
+    return user;
+};
 
-const getSingleUser = async (data) => {
-    console.log("calledd saveUser  repo")
-    console.log("data", data)
+const deleteUser = async (params) => {
+    let user;
     try {
-        let singleData = await userModel.where('email', '==', data.email.toLowerCase())
-        .get()
-        .then(querySnapshot => {
-          if(!querySnapshot.empty) {
-            const user = querySnapshot.docs[0].data()
-            console.log("user", user);
-            // rest of your code 
-          }else{
-              console.log("elsee")
-          }
-        })
-        // let dataa = await userModel.doc("t43CHzRhqf7sUvyONW22").update(data);
-        // console.log("dataa", dataa)
-
-        return 
+        await userModel
+            .where("uid", "==", params.uid)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    user = doc.ref.delete();
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     } catch (e) {
-        throw e;
+        console.log(e);
     }
-}
-
+    return user;
+};
 
 module.exports = {
     getuserData,
     saveUser,
-    updateUserData
-}
+    updateUser,
+    deleteUser,
+};
+
+
+// {
+//     "uid":"",
+//     "name":"",
+//     "email":"",
+//     "image":"",
+//     "address": {
+// 		"door_no": "",
+// 		"street": "",
+// 		"district": "",
+// 		"state": "",
+// 		"pincode": 641005
+// 	},
+//     "contact_number":9999999999
+// }

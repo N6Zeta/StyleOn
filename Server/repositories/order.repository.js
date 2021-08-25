@@ -2,7 +2,7 @@ const orderModel = require("../models/order.model")
 
 const getOrderData = async (params) => {
     try {
-        const snapshot = await orderModel.get();
+        const snapshot = await orderModel.where("uid", "==", parseInt(params.uid)).get();
         let orderData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
         return orderData;
     } catch (e) {

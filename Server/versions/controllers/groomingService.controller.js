@@ -13,45 +13,58 @@ const getGroomingServiceData = async (req,res) => {
     return res.status(200).send(response);
 }
 
-const createGroomingServiceData = async (req,res) => {
+const getAllServiceData = async (req, res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await groomingServiceServices.getAllServiceData({
+        ...params,
+        ...queryParams,
+        ...bodyParams,
+    });
+    return res.status(200).send(response);
+};
+
+const createGroomingServiceData = async (req, res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
     const response = await groomingServiceServices.createGroomingServiceData({
         ...params,
         ...queryParams,
-        ...bodyParams
+        ...bodyParams,
     });
     return res.status(200).send(response);
-}
+};
 
-const updateGroomingServiceData = async (req,res) => {
+const updateGroomingServiceData = async (req, res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
     const response = await groomingServiceServices.updateGroomingServiceData({
         ...params,
         ...queryParams,
-        ...bodyParams
+        ...bodyParams,
     });
     return res.status(200).send(response);
-}
+};
 
-const deleteGroomingServiceData = async (req,res) => {
+const deleteGroomingServiceData = async (req, res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
     const response = await groomingServiceServices.deleteGroomingServiceData({
         ...params,
         ...queryParams,
-        ...bodyParams
+        ...bodyParams,
     });
     return res.status(200).send(response);
-}
+};
 
 module.exports = {
     getGroomingServiceData,
     createGroomingServiceData,
     updateGroomingServiceData,
-    deleteGroomingServiceData
-}
+    deleteGroomingServiceData,
+    getAllServiceData,
+};

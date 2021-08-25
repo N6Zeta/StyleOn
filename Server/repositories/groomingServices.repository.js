@@ -10,61 +10,74 @@ const getGroomingServiceData = async (params) => {
     }
 }
 
-const createGroomingServiceData = async (params) => {
+const getGroomingServices = async serviceIDs => {
     try {
-        return await groomingServiceModel.add(params)
+        const snapshot = await groomingServiceModel.where("service_id", "in", serviceIDs).get();
+        let GroomingServiceData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return GroomingServiceData;
     } catch (e) {
         console.log(e);
     }
-}
+};
 
-const updateGroomingServiceData = async (params) => {
-    console.log("updateGroomingServiceData params", params)
+const createGroomingServiceData = async params => {
+    try {
+        return await groomingServiceModel.add(params);
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const updateGroomingServiceData = async params => {
+    console.log("updateGroomingServiceData params", params);
     let groomingService;
-    try{
-        await groomingServiceModel.where('service_id','==', params.service_id)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach(doc=> {
-                doc.ref.update(params)
-                groomingService =  {...doc.data(), ...params, id:doc.id}
+    try {
+        await groomingServiceModel
+            .where("service_id", "==", params.service_id)
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    doc.ref.update(params);
+                    groomingService = { ...doc.data(), ...params, id: doc.id };
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        })        
-        .catch(err => {
-            console.log(err)
-        })
-    }catch (e) { 
+    } catch (e) {
         console.log(e);
     }
     return groomingService;
-}
+};
 
-const deleteGroomingServiceData = async (params) => {
-    let groomingService
-    try{
-        await groomingServiceModel.where('service_id','==', params.service_id)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach(doc=> {
-                doc.ref.delete()
-                groomingService = doc.id
+const deleteGroomingServiceData = async params => {
+    let groomingService;
+    try {
+        await groomingServiceModel
+            .where("service_id", "==", params.service_id)
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    doc.ref.delete();
+                    groomingService = doc.id;
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
     return groomingService;
-}
+};
 
 module.exports = {
     getGroomingServiceData,
     createGroomingServiceData,
     updateGroomingServiceData,
-    deleteGroomingServiceData
-}
+    deleteGroomingServiceData,
+    getGroomingServices,
+};
 
 // Demo json
 // {

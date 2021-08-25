@@ -4,6 +4,6 @@ const homeController = require('../controllers/home.controller');
 // const { checkToken } = require("../../../utils/jwt");
 
 
-router.get('/', homeController.getHomepageData);
+router.get("/", homeController.getHomeData);
 
 module.exports = router;

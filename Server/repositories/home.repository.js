@@ -1,17 +1,16 @@
 //Model will be imported( firestore )
 
-const getHomepageData = async (res,req) => {
+const getHomeData = async (params) => {
     /* 
         query to fetch data from firestore
         return the data to the service layer
 
     */
-    console.log("calledd home repo")
+    console.log("calledd home repo");
     const response = true;
-    return response
-}
-
+    return response;
+};
 
 module.exports = {
-    getHomepageData
-}
+    getHomeData,
+};

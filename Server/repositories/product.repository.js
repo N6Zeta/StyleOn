@@ -11,62 +11,74 @@ const getProductData = async (params) => {
     }
 }
 
-const createProductData = async (params) => {
+const getProducts = async productIds => {
     try {
-        return await productModel.add(params)
+        const snapshot = await productModel.where("product_id", "in", productIds).get();
+        let productData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return productData;
     } catch (e) {
         console.log(e);
     }
-}
+};
 
-const updateProductData = async (params) => {
-    console.log("updateProductData params", params)
+const createProductData = async params => {
+    try {
+        return await productModel.add(params);
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const updateProductData = async params => {
+    console.log("updateProductData params", params);
     let product;
-    try{
-        await productModel.where('product_id','==', params.product_id)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach(doc=> {
-                doc.ref.update(params)
-                product =  {...doc.data(), ...params, id:doc.id}
+    try {
+        await productModel
+            .where("product_id", "==", params.product_id)
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    doc.ref.update(params);
+                    product = { ...doc.data(), ...params, id: doc.id };
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        })        
-        .catch(err => {
-            console.log(err)
-        })
-    }catch (e) { 
+    } catch (e) {
         console.log(e);
     }
     return product;
-}
+};
 
-const deleteProductData = async (params) => {
-    let product
-    try{
-        await productModel.where('product_id','==', params.product_id)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach(doc=> {
-                doc.ref.delete()
-                product = doc.id
+const deleteProductData = async params => {
+    let product;
+    try {
+        await productModel
+            .where("product_id", "==", params.product_id)
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    doc.ref.delete();
+                    product = doc.id;
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
     return product;
-}
-
+};
 
 module.exports = {
     getProductData,
     createProductData,
     updateProductData,
-    deleteProductData
-}
+    deleteProductData,
+    getProducts,
+};
 
 
 // Demo Json 
