@@ -2,44 +2,4 @@ functions
 
 node_modules 
 
-env
 
-keys
-
-
-// let data = {
-//     "product_id" :12,
-//     "images" :["","","",""],
-//     "description" : "Hair Product-for men" ,
-//     "product_name" : "Serum" ,
-//     "brand_name" : "loreal" ,
-//     "category" : "hair" ,
-//     "suitable" : "male" ,
-//     "active" :true,
-//     "original_price" :100,
-//     "discounted_price" :80,
-//     "rating" :4,
-//     "review" : [{
-//         "customer_uid":1, 
-//         "customer_name":"Varun",
-//         "title":"nice product",
-//         "review":"I'm so happy with the product but....",
-//         "profile_image":""
-//     },
-//     {
-//         "customer_uid":1, 
-//         "customer_name":"Varun",
-//         "title":"nice product",
-//         "review":"I'm so happy with the product but....",
-//         "profile_image":""
-//     },
-//     {
-//         "customer_uid":1, 
-//         "customer_name":"Varun",
-//         "title":"nice product",
-//         "review":"I'm so happy with the product but....",
-//         "profile_image":""
-//     }],
-//     "recommendations" :[],
-//     "featured" :true
-// }
