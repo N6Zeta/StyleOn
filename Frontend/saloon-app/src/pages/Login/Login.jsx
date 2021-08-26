@@ -4,7 +4,7 @@ import { signInWithGoogle } from '../../firebase/firebase.utils'
 import './Login.css'
 
 export default function Login() {
-const displayName = useSelector(state => state.user.displayName)    
+const displayName = useSelector(state => state.user.name)    
 
 return (
         <div className='login-main'>

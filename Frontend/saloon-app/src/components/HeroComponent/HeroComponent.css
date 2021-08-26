@@ -48,6 +48,12 @@
     filter: grayscale(0);
     font-size: 1.4em;
     margin: 2%;
+    cursor: pointer;
+}
+
+.hero-inputs button:hover{
+    background-color: rgb(1, 1, 133);
+    font-size: 1.5em;
 }
 
 select{
