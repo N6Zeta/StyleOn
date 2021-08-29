@@ -24,6 +24,7 @@
     transform: scale(1.15);
     opacity: 1;
 transition: transform 3s;
+cursor: pointer;
 }
 .service-description{
     display: flex;

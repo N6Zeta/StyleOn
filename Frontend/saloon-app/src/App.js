@@ -19,7 +19,7 @@ function App() {
   useEffect(()=>{
     const logOutUser=auth.onAuthStateChanged(async (user)=>{
       if(user){
-      const userRef = await createUserProfileDocument(user)
+      
 
       const { displayName, email }  = user;
         dispatch(setCurrentUser({name:displayName,email:email}))
@@ -27,7 +27,7 @@ function App() {
     
   
       }else{
-        setCurrentUser(user)
+        dispatch(setCurrentUser({name:null,email:null}))
       }
 
       return ()=>{

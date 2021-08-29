@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { auth } from '../../firebase/firebase.utils'
 import './header.css'
 
 
 export default function Header() {
-    const user = useSelector(state=>state.user.displayName)
+    const history = useHistory()
+    const user = useSelector(state=>state.user.name)
     const [userOptions,setUserOptions] = useState(false)
-
+    const logout = ()=>{
+        setUserOptions(false)
+        auth.signOut()
+        history.push('/home')
+    }
 
     return (
         <div className='header-main'>
@@ -24,7 +30,7 @@ export default function Header() {
         {userOptions?
         <div className='user-options'>
             <p>My Profile</p>
-            <p className='logout-button'>Logout</p>
+            <p onClick={()=>logout()} className='logout-button'>Logout</p>
 
         </div>:null}
         </div>
