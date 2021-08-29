@@ -1,5 +1,6 @@
 const { OAuth2Client } = require("google-auth-library");
 const { GOOGLE_CLIENT_ID } = require("../../keys/googleClientId");
+const { TOKEN_NOT_VALID, TOKEN_NOT_SUPPLIED } = require("../../constants/constant");
 
 /*
     @checkToken middleware  - Used to check the validity for Id token
@@ -16,7 +17,7 @@ const checkToken = async (idtoken, next) => {
     if (idToken === undefined || idToken === null) {
         return res.status(401).send({
             success: false,
-            message: "Authentication error: Auth Token is not supplied",
+            message: TOKEN_NOT_SUPPLIED,
         });
     } else {
         try {
@@ -31,7 +32,7 @@ const checkToken = async (idtoken, next) => {
             console.log(error);
             return res.status(403).json({
                 success: false,
-                message: "Token is not valid",
+                message: TOKEN_NOT_VALID,
             });
         }
     }
