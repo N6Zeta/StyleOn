@@ -1,0 +1,36 @@
+.checkout-page {
+    width: 55vw;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 22.5%;
+}
+
+.checkout-page .checkout-header {
+    width: 100%;
+    padding: 2% 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
+}
+
+.checkout-header .header-block {
+    text-transform: capitalize;
+    width: 22.6%;
+}
+
+.checkout-header .header-block:last-child{
+    width: 9%;
+}
+
+.checkout-page .total {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 36px;
+}
+
+.empty-message {
+    text-align: center;
+    margin-top: 15vh;
+  }

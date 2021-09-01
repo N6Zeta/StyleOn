@@ -10,13 +10,17 @@
 
 }
 
+.book-now-button:hover{
+    font-size: 1.5em;
+}
+
 .service-main{
     border: 1px solid rgb(100, 94, 94);
     background-color: white;
     box-shadow: 5px 5px 1px rgb(202, 201, 201);
     opacity: 0.9;
 
-    /* width: 30vw; */
+    width: 20vw;
 
 }
 
@@ -33,6 +37,7 @@ cursor: pointer;
     padding: 2%;
     height: 35%;
     margin: 0;
+    height: fit-content;
     justify-content: space-evenly;
 }
 
@@ -42,6 +47,7 @@ cursor: pointer;
     height: fit-content;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
+
 }
 
 .service-main img{

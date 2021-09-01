@@ -3,35 +3,62 @@ import { useState } from 'react'
 import HeroComponent from '../../components/HeroComponent/HeroComponent'
 import SalonCard from '../../components/SalonCard/SalonCard'
 import ServiceCard from '../../components/ServiceCard/ServiceCard'
-import { services } from '../../serviceData'
+// import { services } from '../../serviceData'
+import { useSelector } from 'react-redux'
 
 export default function ServicesAndSalons() {
 
-    const [type,setType]=useState('services')
+    const {services,salons} = useSelector(state=>state.appdata)
+    const [searchValue,setSearchValue] = useState('')
+    const [filteredServices,setFilteredServices] = useState(services)
+    const [filteredSalons,setFilteredSalons] = useState(salons)
+
+
+    function filteredItems(e){
+
+        let search = e.target.value.toLowerCase()
+        setSearchValue(search)
+        setFilteredServices(services.filter(service=>(service.name.toLowerCase().includes(search)|| service.description.toLowerCase().includes(search))))
+
+        setFilteredSalons(salons.filter(salon=>(salon.name.toLowerCase().includes(search )|| salon.description.toLowerCase().includes(search))))
+       
+    }
+
 
     return (
         <div className='services-and-salons-main'>
             <HeroComponent imageUrl='https://wallpaperaccess.com/full/1190372.jpg' title='Best In Market !!'>
-                <select value={type} onChange={(e)=>setType(e.target.value)}>
-                    <option value='salons'>Salon</option>
-                    <option value='services'>Service</option>
-                </select>
-                <input type="text" placeholder='Search Here . . .' />
+               
+                <input onChange={(e)=>filteredItems(e)} value={searchValue} type="text" placeholder='Search Here . . .' />
                 <button>Search</button>
             </HeroComponent>
-            <h1>{type.toUpperCase()}</h1>
+            {filteredServices.length?<h1>Services</h1>:null}
 
             <div className='items-grid'>
-                {
-                    type=='services'?services.map((service,index)=>(
-                        <ServiceCard key={index} card={service}/>
-                    )):[1,2,3,4,5,6,7,8,9].map((x,index)=>(
-                        <SalonCard imageUrl='https://content3.jdmagicbox.com/comp/delhi/36/011pb012236/catalogue/looks-salon-delhi-fuuw5p2fy1.jpg?clr=3d2929' name='Looks Salon' address='Cannaught Place, Delhi'/>
-                    ))
-                }
+              {
+                  filteredServices.length?filteredServices.map(service=>(
+                      <ServiceCard card={service}/>
+                  )):null
+
+    
+              }
+             
+
             </div>
+            {filteredSalons.length?<h1>Salon</h1>:null}
+           
 
+           <div className='items-grid'>
+            {
+                  filteredSalons.length>0?filteredSalons.map(salon=>(
+                      <SalonCard imageUrl='https://i1.wp.com/cdn.whatsuplife.in/delhi/blog/2020/11/total.jpg' card={salon}/>
+                  )):null
 
+    
+              }  
+               
+               
+               </div>   
             
         </div>
     )

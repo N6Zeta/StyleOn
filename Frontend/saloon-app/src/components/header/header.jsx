@@ -1,13 +1,18 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import './header.css'
-
+import {ReactComponent as CartImage} from '../../assets/images/shopping-bag.svg'
+import Cart from '../Cart/Cart'
+import { toggleCart } from '../../redux/cart/cart.actions'
 
 export default function Header() {
+    const dispatch = useDispatch()
     const history = useHistory()
+    const cartState = useSelector(state=>state.cart.hidden)
     const user = useSelector(state=>state.user.name)
+    
     const [userOptions,setUserOptions] = useState(false)
     const logout = ()=>{
         setUserOptions(false)
@@ -21,18 +26,28 @@ export default function Header() {
          <Link to='/home'>   
         <p className='brand-name'>StyleOn</p>
         </Link>
+        <CartImage onClick={()=>dispatch(toggleCart())} className='cart-image' />
+
         {!user?
         <Link to='/login'>
         <p className='login-link'>Login</p>            
         </Link>:
-        <p className='username'>Hi, {user} <span onClick={()=>setUserOptions(!userOptions)} className='user-arrow'>&#62;</span></p> }
+        
+        <p  onClick={()=>setUserOptions(!userOptions)} className='username'>Hi, {user} <span className='user-arrow'>&#62;</span></p> }
+        {/* <img className='cart-image' src={CartImage} alt="loading" /> */}
         </div> 
+
         {userOptions?
         <div className='user-options'>
-            <p>My Profile</p>
+            <Link to='/user'><p onClick={()=>setUserOptions(false)}>My Profile</p></Link>
             <p onClick={()=>logout()} className='logout-button'>Logout</p>
 
         </div>:null}
+        {
+            cartState?<Cart/>:null
+        }
+
+
         </div>
 
     )

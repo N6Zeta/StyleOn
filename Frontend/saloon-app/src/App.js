@@ -5,11 +5,14 @@ import HomePage from './pages/HomePage/HomePage';
 import {Switch,Route, Redirect} from 'react-router-dom'
 import ProductMarketPlace from './pages/ProductMarketPlace/ProductMarketPlace';
 import Login from './pages/Login/Login';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth } from './firebase/firebase.utils';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 import ServicesAndSalons from './pages/ServicesAndSalons/ServicesAndSalons';
+import { fetchProducts, fetchServices } from './redux/appdata/appdata.actions';
+import MyProfile from './pages/MyProfile/MyProfile';
+import Checkout from './pages/checkout/Checkout';
 
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
+    dispatch(fetchProducts())
+    dispatch(fetchServices())
+
     const logOutUser=auth.onAuthStateChanged(async (user)=>{
       if(user){
       
@@ -50,6 +56,14 @@ function App() {
 
         <Route exact path='/services'>
           <ServicesAndSalons/>
+        </Route>
+
+        <Route exact path='/user'>
+          <MyProfile/>
+        </Route>
+
+        <Route exact path='/checkout'>
+          <Checkout/>
         </Route>
 
       <Route path='/'>
