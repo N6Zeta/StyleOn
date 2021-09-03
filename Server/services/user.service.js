@@ -1,19 +1,12 @@
 const userRepo = require("../repositories/user.repository");
-const {
-    GET_SUCCESS,
-    GET_FAILED,
-    POST_SUCCESS,
-    POST_FAILED,
-    DELETE_SUCCESS,
-    DELETE_FAILED,
-    UPDATE_FAILED,
-    UPDATE_SUCCESS,
+const {decodeToken} = require("../utils/firebase/firebase.util")
+const { GET_SUCCESS,GET_FAILED,POST_SUCCESS,POST_FAILED,DELETE_SUCCESS,DELETE_FAILED,UPDATE_FAILED,UPDATE_SUCCESS,
 } = require("../constants/constant");
 
-const getuserData = async (params) => {
+const getUserByID = async (params) => {
     console.log("calledd user service");
     try {
-        const response = await userRepo.getuserData(params);
+        const response = await userRepo.getUserByID(params);
         // console.log(response)
         if (response) {
             return { status: 1, message: GET_SUCCESS, response };
@@ -26,14 +19,19 @@ const getuserData = async (params) => {
 };
 
 const saveUser = async (params) => {
-    console.log("calledd saveUser service");
-    console.log("params", params);
     try {
-        const response = await userRepo.saveUser(params);
-        if (response) {
-            return { status: 1, message: POST_SUCCESS, response };
-        } else {
-            return { status: 0, message: POST_FAILED };
+        const existingUser = await userRepo.getUserByEmail(params)
+        if(existingUser.length >=1){ 
+            console.log("user present")
+            return { status: 1, message: POST_SUCCESS, response: existingUser };
+        }else{
+            const response = await userRepo.saveUser(params);
+            console.log("send welcome email")
+            if (response) {
+                return { status: 1, message: POST_SUCCESS, response };
+            } else { 
+                return { status: 0, message: POST_FAILED };
+            }
         }
     } catch (err) {
         console.log(err);
@@ -70,7 +68,7 @@ const deleteUser = async (params) => {
 };
 
 module.exports = {
-    getuserData,
+    getUserByID,
     saveUser,
     updateUser,
     deleteUser,

@@ -1,4 +1,4 @@
-import RatingComponent from '../RatingComponent/RatingComponent'
+import {RatingComponent} from '../RatingComponent/RatingComponent'
 import './TestimonialsCard.css'
 
 export default function TestimonialsCard({card:{name,image,description,rating}}) {

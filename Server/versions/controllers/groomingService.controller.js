@@ -25,6 +25,20 @@ const getAllServiceData = async (req, res) => {
     return res.status(200).send(response);
 };
 
+const getGroomingServiceByID = async (req, res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await groomingServiceServices.getGroomingServiceByID({
+        ...params,
+        ...queryParams,
+        ...bodyParams,
+    });
+    return res.status(200).send(response);
+};
+
+
+
 const createGroomingServiceData = async (req, res) => {
     const params = req.params;
     const queryParams = req.query;
@@ -67,4 +81,5 @@ module.exports = {
     updateGroomingServiceData,
     deleteGroomingServiceData,
     getAllServiceData,
+    getGroomingServiceByID
 };

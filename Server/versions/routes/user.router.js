@@ -4,7 +4,7 @@ const userController = require('../controllers/user.controller');
 // const { checkToken } = require("../../../utils/jwt");
 
 
-router.get('/', userController.getuserData);
+router.get('/', userController.getUserByID);
 router.post('/create', userController.saveUser);
 router.put("/update", userController.updateUser);
 router.delete("/delete", userController.deleteUser);

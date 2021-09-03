@@ -1,64 +1,62 @@
-import './App.css';
-import Footer from './components/Footer/footer';
-import Header from './components/header/header';
-import HomePage from './pages/HomePage/HomePage';
-import {Switch,Route, Redirect} from 'react-router-dom'
-import ProductMarketPlace from './pages/ProductMarketPlace/ProductMarketPlace';
-import Login from './pages/Login/Login';
-import { auth } from './firebase/firebase.utils';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
-import ServicesAndSalons from './pages/ServicesAndSalons/ServicesAndSalons';
-import { fetchProducts, fetchServices } from './redux/appdata/appdata.actions';
-import MyProfile from './pages/MyProfile/MyProfile';
-import Checkout from './pages/checkout/Checkout';
+import React, { lazy, Suspense, useEffect } from "react";
+import Footer from "./components/Footer/footer";
+import Header from "./components/header/header";
+import HomePage from "./pages/HomePage/HomePage";
+import { Switch, Route, Redirect } from "react-router-dom";
+import ProductMarketPlace from "./pages/ProductMarketPlace/ProductMarketPlace";
+import Login from "./pages/Login/Login";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
+import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
 
+
+const Product = lazy(() => import("./pages/Product/Product"));
+const Spinner = lazy(() => import("./components/Spinner/Spinner"));
 
 function App() {
+    const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
+    useEffect(() => {
+        const logOutUser = auth.onAuthStateChanged(async user => {
+            if (user) {
+                const { displayName, email } = user;
+                dispatch(setCurrentUser({ name: displayName, email: email }));
+            } else {
+                dispatch(setCurrentUser({ name: null, email: null }));
+            }
 
-  useEffect(()=>{
-    dispatch(fetchProducts())
-    dispatch(fetchServices())
+            return () => {
+                logOutUser();
+            };
+        });
+    }, []);
 
-    const logOutUser=auth.onAuthStateChanged(async (user)=>{
-      if(user){
-      
+    return (
+        <Suspense fallback={<div>Loading... </div>}>
+            <Header />
+            <Switch>
+                <Route exact path="/home">
+                    <HomePage />
+                </Route>
 
-      const { displayName, email }  = user;
-        dispatch(setCurrentUser({name:displayName,email:email}))
+                <Route exact path="/login">
+                    <Login />
+                </Route>
 
-    
-  
-      }else{
-        dispatch(setCurrentUser({name:null,email:null}))
-      }
+                <Route exact path="/services">
+                    <ServicesAndSalons />
+                </Route>
 
-      return ()=>{
-        logOutUser()
-      }
-    })
-  },[])
+                {/* <Route path="/">
+                    <Redirect to="/home" />
+                </Route> */}
 
-  return (
-    <div className="App">
-      <Header/>
-      <Switch>
-        <Route exact path='/home'>
-          <HomePage/>
-        </Route>
+                <Route exact path="/product/:slug">
+                    <Product />
+                </Route>
 
-        <Route exact path='/login'>
-          <Login/>
-        </Route>
-
-        <Route exact path='/services'>
-          <ServicesAndSalons/>
-        </Route>
-
-        <Route exact path='/user'>
+                <Route exact path='/user'>
           <MyProfile/>
         </Route>
 
@@ -68,12 +66,12 @@ function App() {
 
       <Route path='/'>
         <Redirect to='/home'/>
-        </Route>    
-      </Switch>
+        </Route>
+            </Switch>
 
-      <Footer/>
-          </div>
-  );
+            <Footer />
+        </Suspense>
+    );
 }
 
 export default App;

@@ -10,6 +10,18 @@ const getReviews = async (params) => {
     }
 }
 
+const getReviewsByIds = async (params) => {
+    try {
+        const snapshot = await reviewModel.where("review_id", "in", params).get();
+        let reviewData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return reviewData;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+
+
 const createReview = async (params) => {
     try {
         return await reviewModel.add(params)
@@ -62,7 +74,8 @@ module.exports = {
     getReviews,
     createReview,
     updateReview,
-    deleteReview
+    deleteReview,
+    getReviewsByIds
 }
 
 // Demo json

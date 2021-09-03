@@ -13,6 +13,19 @@ const getSalonData = async (req,res) => {
     return res.status(200).send(response);
 }
 
+
+const getSalonByID = async (req,res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await salonServices.getSalonByID({
+        ...params,
+        ...queryParams,
+        ...bodyParams
+    });
+    return res.status(200).send(response);
+}
+
 const createSalonData = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
@@ -53,5 +66,6 @@ module.exports = {
     getSalonData,
     createSalonData,
     updateSalonData,
-    deleteSalonData
+    deleteSalonData,
+    getSalonByID
 }

@@ -3,7 +3,7 @@ const productRepo = require("../repositories/product.repository");
 const reviewRepo = require("../repositories/review.repository");
 const userRepo = require("../repositories/user.repository");
 const groomingServiceRepo = require("../repositories/groomingServices.repository");
-
+const {mapReviewWithUsers} = require("../utils/common.util")
 const { GET_SUCCESS, GET_FAILED, POST_SUCCESS, POST_FAILED } = require("../constants/constant");
 
 const getHomeData = async params => {
@@ -34,22 +34,6 @@ const getHomeData = async params => {
     } catch (err) {
         console.log(err);
     }
-};
-
-//Map the reviews with user
-const mapReviewWithUsers = async reviews => {
-    let uid = [];
-    reviews.map(review => uid.push(review.uid));
-    const userResponse = await userRepo.getuserData(uid);
-
-    reviews.map(review => {
-        userResponse.map(user => {
-            if (review.uid === user.uid) {
-                (review.name = user.name), (review.email = user.email);
-            }
-        });
-    });
-    return reviews;
 };
 
 module.exports = {
