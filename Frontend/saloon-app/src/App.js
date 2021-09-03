@@ -13,6 +13,7 @@ import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
 const Product = lazy(() => import("./pages/Product/Product"));
 const Service = lazy(() => import("./pages/Service/Service"));
 const Spinner = lazy(() => import("./components/Spinner/Spinner"));
+const Skeleton = lazy(() => import("./skeletons/IndividualProductSkeleton"));
 
 function App() {
     const dispatch = useDispatch();
@@ -60,6 +61,9 @@ function App() {
                     <Service />
                 </Route>
 
+                <Route exact path="/skeleton">
+                    <Skeleton />
+                </Route>
             </Switch>
 
             <Footer />

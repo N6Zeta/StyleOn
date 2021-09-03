@@ -18,24 +18,24 @@ export default function Reviews({reviews}) {
     return (
         <>
             <div className="review-container">
-                <h5 className="H5-heading">{CUSTOMER_REVIEW}({reviews.length})</h5>
+                <h5 className="H5-heading">
+                    {CUSTOMER_REVIEW}({reviews.length})
+                </h5>
                 {renderCustomerReviews()}
             </div>
-                    
+
             <style jsx>
                 {`
-                    .review-container{
-
+                    .review-container {
                     }
-                    .review-container .rev-desc{
-                        margin : 1rem 0 2rem 0;
+                    .review-container .rev-desc {
+                        margin: 1rem 0 2rem 0;
                     }
-                    .review-container .rating{
-                        margin : 0 !important;
-                        
+                    .review-container .rating {
+                        margin: 0 !important;
                     }
                 `}
             </style>
         </>
-    )
+    );
 }

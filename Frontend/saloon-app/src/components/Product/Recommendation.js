@@ -13,10 +13,9 @@ export default function Recommendation({recommendations}) {
 
     return (
         <>
-            <div className="recommendations-container"> 
+            <div className="recommendations-container">
                 <h5 className="H5-heading">{SIMILAR_PRODUCT}</h5>
                 <div className="g-d g-col-6 g-gap-32"> {renderRecommendations()} </div>
-                
             </div>
             <style jsx>
                 {`
@@ -25,13 +24,11 @@ export default function Recommendation({recommendations}) {
                         background-color: var(--dove);
                     }
 
-                    .recommendations-container .H5-heading{
-                        margin-bottom:1rem;
+                    .recommendations-container .H5-heading {
+                        margin-bottom: 1rem;
                     }
                 `}
             </style>
-
-            
         </>
-    )
+    );
 }
