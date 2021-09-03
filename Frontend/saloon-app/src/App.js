@@ -11,6 +11,7 @@ import { setCurrentUser } from "./redux/user/user.actions";
 import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
 
 const Product = lazy(() => import("./pages/Product/Product"));
+const Service = lazy(() => import("./pages/Service/Service"));
 const Spinner = lazy(() => import("./components/Spinner/Spinner"));
 
 function App() {
@@ -54,6 +55,11 @@ function App() {
                 <Route exact path="/product/:slug">
                     <Product />
                 </Route>
+
+                <Route exact path="/service/:slug">
+                    <Service />
+                </Route>
+
             </Switch>
 
             <Footer />

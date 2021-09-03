@@ -6,41 +6,44 @@ import Hero from "../../components/Product/Hero";
 import Spinner from '../../components/Spinner/Spinner'
 import Recommendation from '../../components/Product/Recommendation'
 
-export default function Product() {
+export default function Service() {
     let locationProps = useLocation();
-    const [productDetails, setProductDetails] = useState({
-        product:{}, reviews:{},recommendations:{}});
+    const [serviceDetails, setServiceDetails] = useState({
+        service:{}, reviews:{},recommendations:{}});
     const [isLoading, setIsLoading] = useState(true);
+
+
     useEffect(() => {
-        fetchProduct();
+        fetchservice();
     }, []);
 
-    const fetchProduct = async () => {
-        let product_id = locationProps.pathname.split("/")[2];
-        let productDetails = [];
+    const fetchservice = async () => {
+        let service_id = locationProps.pathname.split("/")[2];
+        let serviceDetails = [];
         const data = {
             params: {
-                product_id: product_id,
+                service_id: service_id,
             },
         };
         await axios
-            .get(G_API_URL + "/product/id", data)
+            .get(G_API_URL + "/service/id", data)
             .then(response => {
-                productDetails = response.data
+                serviceDetails = response.data
             })
             .catch(err => console.log(err));
    
-        setProductDetails(productDetails);
+        setServiceDetails(serviceDetails);
         setIsLoading(false);
     };
 
-    const {product, reviews, recommendations} = productDetails
+    const {service, reviews, recommendations} = serviceDetails
+    console.log("serviceDetails", serviceDetails)
 
     return (
         <>
             {!isLoading ?
-                <div className="product-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
-                    <Hero content={product[0]} reviews = {reviews} callingFrom="product" />
+                <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
+                    <Hero content={service[0]} reviews = {reviews}  callingFrom="service"/>
                     <Recommendation recommendations = {recommendations} />
                 </div>:
                 <Spinner />

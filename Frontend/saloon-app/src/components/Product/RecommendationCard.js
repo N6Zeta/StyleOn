@@ -14,7 +14,7 @@ export default function RecommendationCard({recommendation}) {
                     <RatingComponent value={recommendation.rating} size = {18} stars= {1}/>
                 </div>
                 <div className="card-meta">
-                    <span className="rec-title body-small"> {recommendation.product_name}</span>
+                    <span className="rec-title body-small"> {recommendation.name}</span>
                     <div className="rec-desc body-caption"> {recommendation.brand_name}</div>
                     <div className="rec-price body-small">
                         <span className="body-small"> {RS} {recommendation.discounted_price} </span>

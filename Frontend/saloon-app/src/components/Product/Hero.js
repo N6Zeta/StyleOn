@@ -3,8 +3,8 @@ import {RatingComponent}  from "../RatingComponent/RatingComponent";
 import Reviews from '../Product/Reviews'
 import {INCLUSIVE, RS, SELLER,  CUSTOMER_REVIEW} from '../../constants/productConstants'
 
-export default function Hero({ product, reviews }) {
-    const { product_name, discounted_price, original_price, rating, brand_name, images } = product;
+export default function Hero({ content, reviews, callingFrom }) {
+    const { name, discounted_price, original_price, rating, brand_name, images } = content;
 
     const displayImages = () => {
         return images.map((image, index) => <div className="bg-img" key={index} style={{ backgroundImage: "url(" +image+ ")"}}> </div>);
@@ -13,7 +13,7 @@ export default function Hero({ product, reviews }) {
     const renderProductDetails = () => {
         return (
             <>
-                <h1 className="prod-name H1-heading"> {product_name}</h1>
+                <h1 className="prod-name H1-heading"> {name}</h1>
                 <RatingComponent value={rating} size = {30} starts = {5} />
                 <div className="prod-price h2-heading">
                     <span className="H2-heading"> {RS} {discounted_price} </span>
@@ -25,7 +25,8 @@ export default function Hero({ product, reviews }) {
                     </span>
                 </div>
                 <div className="offer tax">{INCLUSIVE}</div>
-                <div className="prod-brand h3-heading"> {SELLER} {brand_name}</div>
+                {callingFrom === "product" && <div className="prod-brand h3-heading"> {SELLER} {brand_name}</div> }
+                
             </>
          )
     }
