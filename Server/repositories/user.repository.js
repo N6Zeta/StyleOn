@@ -1,23 +1,35 @@
 const userModel = require("../models/user.model");
 
-const getuserData = async (params) => {
-    console.log("typeof params.uid", typeof params.uid)
+const getUserByID = async (params) => {
     try {
-        let snapshot 
-        if(typeof params.uid === "string" || params.uid === "number")
-            snapshot= await userModel.where("uid", "==", parseInt(params.uid)).get();
-        else if (params !== undefined)
-            snapshot= await userModel.where('uid', 'in', params).get();
-
-        let reviewData = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        return reviewData;
+        const snapshot = await userModel.where("uid", "==", parseInt(params.uid)).get();
+        let user = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return user;
     } catch (e) {
         console.log(e);
     }
-};
+}
+
+const getUserByEmail = async (params) => {
+    try {
+        const snapshot = await userModel.where("email", "==", params.email).get();
+        let user = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return user;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+
+const getUserByIDs = async (params) => {
+    try {
+        const snapshot = await userModel.where('uid', 'in', params).get();
+        let user = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return user;
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 const saveUser = async (params) => {
     try {
@@ -69,10 +81,12 @@ const deleteUser = async (params) => {
 };
 
 module.exports = {
-    getuserData,
+    getUserByID,
     saveUser,
     updateUser,
     deleteUser,
+    getUserByEmail,
+    getUserByIDs
 };
 
 

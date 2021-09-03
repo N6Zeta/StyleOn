@@ -10,7 +10,17 @@ const getGroomingServiceData = async (params) => {
     }
 }
 
-const getGroomingServices = async serviceIDs => {
+const getGroomingServiceByID = async (params) => {
+    try {
+        const snapshot = await groomingServiceModel.where("service_id", "=", parseInt(params.service_id)).get();
+        let GroomingServiceData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return GroomingServiceData;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+const getGroomingServiceByIDs = async serviceIDs => {
     try {
         const snapshot = await groomingServiceModel.where("service_id", "in", serviceIDs).get();
         let GroomingServiceData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -76,7 +86,8 @@ module.exports = {
     createGroomingServiceData,
     updateGroomingServiceData,
     deleteGroomingServiceData,
-    getGroomingServices,
+    getGroomingServiceByID,
+    getGroomingServiceByIDs
 };
 
 // Demo json

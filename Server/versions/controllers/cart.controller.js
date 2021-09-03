@@ -1,61 +1,57 @@
-const userServices = require('../../services/user.service');
+const cartServices = require('../../services/cart.service');
 // const { checkToken } = require("../../../utils/jwt");
 
-const getUserByID = async (req, res) => {
+const getCardById = async (req,res) => {
     const params = req.params;
-    console.log("params", params);
     const queryParams = req.query;
-    console.log("queryParams", queryParams);
     const bodyParams = req.body;
-    console.log("bodyParams", bodyParams);
-    const response = await userServices.getUserByID({
+    const response = await cartServices.getCardById({
         ...params,
         ...queryParams,
-        ...bodyParams,
+        ...bodyParams 
     });
     return res.status(200).send(response);
-};
+}
 
-const saveUser = async (req, res) => {
-    console.log("save user controller");
-    const params = req.params;
-    const queryParams = req.query;
-    const bodyParams = req.body;
-    const response = await userServices.saveUser({
-        ...params,
-        ...queryParams,
-        ...bodyParams,
-    });
-    return res.status(200).send(response);
-};
+const createCart = async (req,res) => {
 
-const updateUser = async (req, res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await userServices.updateUser({
+    const response = await cartServices.createCart({
         ...params,
         ...queryParams,
-        ...bodyParams,
+        ...bodyParams
     });
     return res.status(200).send(response);
-};
+}
 
-const deleteUser = async (req, res) => {
+const updateCart = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
     const bodyParams = req.body;
-    const response = await userServices.deleteUser({
+    const response = await cartServices.updateCart({
         ...params,
         ...queryParams,
-        ...bodyParams,
+        ...bodyParams
     });
     return res.status(200).send(response);
-};
+}
+
+const deleteOrderData = async (req,res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await cartServices.deleteOrderData({
+        ...params,
+        ...queryParams,
+        ...bodyParams
+    });
+    return res.status(200).send(response);
+}
 
 module.exports = {
-    getUserByID,
-    saveUser,
-    updateUser,
-    deleteUser,
-};
+    getCardById,
+    createCart,
+    updateCart,
+}

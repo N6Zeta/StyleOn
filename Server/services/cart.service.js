@@ -3,23 +3,25 @@ const productRepo = require("../repositories/product.repository");
 const userRepo = require("../repositories/user.repository");
 const groomingServiceRepo = require("../repositories/groomingServices.repository");
 const cartRepo = require("../repositories/cart.repository")
-const { GET_SUCCESS, GET_FAILED, POST_SUCCESS, POST_FAILED, DELETE_SUCCESS, DELETE_FAILED,
-    UPDATE_SUCCESS,
-    UPDATE_FAILED,
-} = require("../constants/constant");
+const {decodeToken} = require("../utils/firebase/firebase.util")
 
-const getOrderData = async params => {
-    console.log("calledd Salon service");
+const {GET_SUCCESS,GET_FAILED,POST_SUCCESS,POST_FAILED,DELETE_SUCCESS,DELETE_FAILED,
+    UPDATE_SUCCESS,UPDATE_FAILED,SCHEMA_PRODUCT,SCHEMA_REVIEW, SCHEMA_SERVICE,SCHEMA_SALON
+} = require("../constants/constant")
+
+/*
+ params will have idtoken. decode the token structure
+ params.uid: uid
+*/
+const getCardById = async params => {
+    console.log("calledd cartttt service");
+    // decodeToken(params)
     try {
-        let orderResponse = await orderRepo.getOrderData(params);
+        let cartResponse = await cartRepo.getCardById(params);
         let userResponse = await userRepo.getUserByID(params);
 
-        orderResponse = await mapOrdersWithServicesAndProducts(orderResponse);
-
-        console.log("orderResponse", orderResponse);
-
-        if (orderResponse) {
-            return { status: 1, message: GET_SUCCESS, orders: orderResponse, user: userResponse };
+        if (cartResponse) {
+            return { status: 1, message: GET_SUCCESS, orders: cartResponse, user: userResponse };
         } else {
             return { status: 0, message: GET_FAILED };
         }
@@ -28,14 +30,11 @@ const getOrderData = async params => {
     }
 };
 
-const createOrderData = async params => {
-    console.log("calledd Salon service");
+const createCart = async params => {
+    console.log("calledd createCart service");
+    console.log("params: " , params);
     try {
-        let cartResponse = await cartRepo.getCardById(params);
-        if(cartResponse.length > 0){
-            const clearCart = await cartRepo.deleteOrderData(params);
-        }
-        const response = await orderRepo.createOrderData(params);
+        const response = await cartRepo.createCart(params);
         console.log("response", response);
         if (response) {
             return { status: 1, message: POST_SUCCESS, data: response };
@@ -47,10 +46,11 @@ const createOrderData = async params => {
     }
 };
 
-const updateOrderData = async params => {
+const updateCart = async params => {
     console.log("calledd Salon service");
+    console.log("params: " , params);
     try {
-        const response = await orderRepo.updateOrderData(params);
+        const response = await cartRepo.updateCart(params);
         console.log("response", response);
         if (response) {
             return { status: 1, message: UPDATE_SUCCESS, data: response };
@@ -62,10 +62,10 @@ const updateOrderData = async params => {
     }
 };
 
-const deleteOrderData = async params => {
+const deleteCart = async params => {
     console.log("calledd Salon service");
     try {
-        const response = await orderRepo.deleteOrderData(params);
+        const response = await cartRepo.deleteOrderData(params);
         console.log("deleteres", response);
         if (response) {
             return { status: 1, message: DELETE_SUCCESS, data: response };
@@ -82,7 +82,7 @@ const mapOrdersWithServicesAndProducts = async orders => {
     let serviceId = [];
     let productId = [];
     console.log("orders", orders);
-    orders.map(order => {  
+    orders.map(order => {
         if (order.services !== undefined && order.services !== null)
             order.services.map(s => serviceId.push(s.service_id));
 
@@ -120,8 +120,8 @@ const mapOrdersWithServicesAndProducts = async orders => {
 
 
 module.exports = {
-    getOrderData,
-    createOrderData,
-    updateOrderData,
-    deleteOrderData
+    getCardById,
+    createCart,
+    updateCart,
+    deleteCart
 } 

@@ -10,6 +10,16 @@ const getSalonData = async (params) => {
     }
 }
 
+const getSalonByID = async (params) => {
+    try {
+        const snapshot = await salonModel.where("salon_id", "=", parseInt(params.salon_id)).get();
+        let salonData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+        return salonData;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 const createSalonData = async (params) => {
     try {
         return await salonModel.add(params)
@@ -64,7 +74,8 @@ module.exports = {
     getSalonData,
     createSalonData,
     updateSalonData,
-    deleteSalonData
+    deleteSalonData,
+    getSalonByID,
 }
 
 // Demo Json 

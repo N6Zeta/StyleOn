@@ -1,9 +1,11 @@
 import { RatingView } from 'react-simple-star-rating'
 
-export default function RatingComponent({value}) {
+export function RatingComponent({value, size, stars}) {
+     let color_code = value >= 4 ? "green" : value <=3 && value >=2 ? "yellow" : "red";
+     console.log("color", color_code)
     return (
-        <div>
-            <RatingView ratingValue={value} />
-        </div>
+        <RatingView ratingValue={value}  fillColor ={color_code} size={size}   stars={stars}/>
     )
 }
+
+        

@@ -9,7 +9,7 @@ const { TOKEN_NOT_VALID, TOKEN_NOT_SUPPLIED } = require("../../constants/constan
 */
 
 let idToken =
-    "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZlZjRiZDkwODU5MWY2OTdhOGE5Yjg5M2IwM2U2YTc3ZWIwNGU1MWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODA5MTc5ODY5NzkwLTY0OWkzMXMzbTBqcGgyNmc0NmFwbWFkZDNhNWo0NjFqLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODA5MTc5ODY5NzkwLTY0OWkzMXMzbTBqcGgyNmc0NmFwbWFkZDNhNWo0NjFqLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE1MTM0MDE1NjEzODk4OTgyMTUyIiwiZW1haWwiOiJ2YXJ1bnByYWJoYWthcmFuMjJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiI2WkZtcEhRUG1hM2E4YnRWejMzZDRnIiwiaWF0IjoxNjI5OTE3OTAyLCJleHAiOjE2Mjk5MjE1MDJ9.jdaa1nTwIhTuHknx7ctEtiT-G2sv6SowRFzd4wM5YmxvAZHiXEk7gyIPh4QMjY1FB8HnalORrgfcIb81obpxr-1ol2OYb09_vVNVNeAt1vUU29kkN4w6NiLgZJjbsLf0y8N0XTsNz7lOV4ebKae2ETwKNvbeLPHDruv_Q0EOQOBnW9WzV1Pm5-AOD5fMEzazvmIAhNgMq6MfCIuz_jSSu0iB1kN8rU9zmt8g4dKcA9fDwyd1RgUXLUkm38DsKzeBf9adv4QSYbChbq_IcwxXOWB3eKK_vcB76L1RASCSAHgRYBqqKnIpGKeL4lPw4DscFincAZFg-_QHpq2RAp07MQ";
+    "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgxOWQxZTYxNDI5ZGQzZDNjYWVmMTI5YzBhYzJiYWU4YzZkNDZmYmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODA5MTc5ODY5NzkwLTY0OWkzMXMzbTBqcGgyNmc0NmFwbWFkZDNhNWo0NjFqLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODA5MTc5ODY5NzkwLTY0OWkzMXMzbTBqcGgyNmc0NmFwbWFkZDNhNWo0NjFqLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE1MTM0MDE1NjEzODk4OTgyMTUyIiwiZW1haWwiOiJ2YXJ1bnByYWJoYWthcmFuMjJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJrSndwMkY4ZjlyaGpPV09qV0tGNERnIiwiaWF0IjoxNjMwNTY1ODU2LCJleHAiOjE2MzA1Njk0NTZ9.oCeADnz1IVEz0j4iBTVbaZizOwT55kRL4XLHxhso-ZRY5TtMIamO6bZ0Aud1SB4VHcGOjT5vfJUXQxN4-S3XcSPrVj81EwpD0rdsl-Z7kz6GUlJqUKLx0IyLrg4x0UF3J1qmS0-V6mrlSLiPtl3_ZqA9vFAnIVngRq2PCT6PFJEJcNaPWg6idz57r9-PGC-901ZC1B3pWS7T81_-tM_HOnumwO7udWZHmT6FdZoexkPjp2Sdf36plrXFAStGScorEr_AvOwIsEZlP3a-mqk-Z8rIHan_7TEJF005BxlCbfnm_iMGXhbl1GToYo_NKsj8nKek93AAX--Uh60EBuZKgQ";
 
 const checkToken = async (idtoken, next) => {
     const client = new OAuth2Client(GOOGLE_CLIENT_ID);
@@ -26,16 +26,40 @@ const checkToken = async (idtoken, next) => {
                 audience: GOOGLE_CLIENT_ID,
             });
             const payload = ticket.getPayload();
-            let currentdate = Math.floor(Date.now() / 1000);
+            let currentdate = Math.floor(Date.now() / 1000); 
+            console.log("payload", payload)
             if (payload.aud === GOOGLE_CLIENT_ID) next();
         } catch (err) {
-            console.log(error);
+            console.log(err);
             return res.status(403).json({
                 success: false,
                 message: TOKEN_NOT_VALID,
             });
         }
     }
+}; 
+
+const decodeToken = async (idtoken) => {
+    const client = new OAuth2Client(GOOGLE_CLIENT_ID);
+    try{
+        console.log("token", idtoken)
+        if (idtoken !== undefined || idtoken !== null) {
+            try {
+                const ticket = await client.verifyIdToken({
+                    idToken: idtoken,
+                    audience: GOOGLE_CLIENT_ID,
+                });
+                const payload = ticket.getPayload();
+                let currentdate = Math.floor(Date.now() / 1000);
+                payload.timestamp = currentdate;
+                return payload;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }catch (err) {
+        console.log(err);
+    }
 };
 
-module.exports = { checkToken };
+module.exports = { decodeToken, checkToken};

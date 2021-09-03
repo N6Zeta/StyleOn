@@ -11,7 +11,18 @@ const getProductData = async (params) => {
     }
 }
 
-const getProducts = async productIds => {
+const getProductByID = async params => {
+    console.log("params", params);
+    try {
+        const snapshot = await productModel.where("product_id", "=", parseInt(params.product_id)).get();
+        let productData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return productData;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const getProductByIds = async productIds => {
     try {
         const snapshot = await productModel.where("product_id", "in", productIds).get();
         let productData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -77,7 +88,8 @@ module.exports = {
     createProductData,
     updateProductData,
     deleteProductData,
-    getProducts,
+    getProductByIds,
+    getProductByID,
 };
 
 
