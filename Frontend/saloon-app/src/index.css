@@ -375,7 +375,7 @@ grid-auto-flow: column;
   background-size: contain;
 }
 
-.bg-image-full {
+.bg-image-full { 
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -387,6 +387,214 @@ grid-auto-flow: column;
 
 .hide-d {
   display: none;
+}
+
+/* Custom Skeletons */
+
+.skeleton-card-wrapper {
+  padding: 2rem;
+  height: 400px;
+  border: var(--peaky-border);
+  border-radius: var(--peaky-br-4);
+  box-shadow: var(--peaky-shadow);
+  background: var(--dove);
+}
+
+.skeleton-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  height: 50px;
+  width: max-content;
+  border: var(--peaky-border);
+  border-radius: var(--peaky-br-4);
+}
+
+.skeleton-card {
+  width: 100%;
+  height: 400px;
+  border-radius: var(--peaky-br-4);
+}
+
+.skeleton-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--peaky-br-full);
+}
+
+.skeleton-tag {
+  height: 24px;
+  width: 100px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-heading {
+  height: 50px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-heading-24 {
+  height: 24px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-heading-30 {
+  height: 30px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-heading-36 {
+  height: 36px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-paragraph {
+  height: 28px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-image {
+  height: 180px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-video {
+  height: 200px;
+  border-radius: var(--peaky-br-4);
+}
+
+.skeleton-icon {
+  height: 24px;
+  width: 24px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-square {
+  height: 94px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-square-box-16 {
+  height: 16px;
+  width: 16px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-square-box-32 {
+  height: 32px;
+  width: 32px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-square-box-64 {
+  height: 64px;
+  width: 64px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-square-box-128 {
+  height: 128px;
+  width: 128px;
+  border-radius: var(--peaky-br-2);
+}
+
+.skeleton-circle {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+}
+
+.skeleton-circle-16 {
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+}
+
+.skeleton-circle-24 {
+  height: 24px;
+  width: 24px;
+  border-radius: 50px;
+}
+
+.skeleton-circle-32 {
+  height: 32px;
+  width: 32px;
+  border-radius: 50px;
+}
+ 
+.skeleton-circle-64 {
+  height: 64px;
+  width: 64px;
+  border-radius: 50px;
+}
+
+.skeleton-input {
+  height: 64px;
+  border-radius: var(--peaky-br-2);
+  border: var(--peaky-border);
+  padding: var(--peaky-pad-16);
+  box-shadow: var(--peaky-box-shadow-high);
+}
+
+.skeleton-dropdown {
+  height: 64px;
+  border-radius: var(--peaky-br-2);
+  padding: var(--peaky-pad-16);
+}
+
+.skeleton-card,
+.skeleton-avatar,
+.skeleton-tag,
+.skeleton-heading,
+.skeleton-heading-24,
+.skeleton-heading-30,
+.skeleton-heading-36,
+.skeleton-paragraph,
+.skeleton-image,
+.skeleton-video,
+.skeleton-icon,
+.skeleton-square,
+.skeleton-square-box-16,
+.skeleton-square-box-32,
+.skeleton-square-box-64,
+.skeleton-square-box-128,
+.skeleton-circle,
+.skeleton-circle-16,
+.skeleton-circle-24,
+.skeleton-circle-32,
+.skeleton-circle-64,
+.skeleton-dropdown {
+  background: -webkit-gradient(
+          linear,
+          left top,
+          right top,
+          color-stop(25%, #f2f2f2),
+          color-stop(37%, #e6e6e6),
+          color-stop(63%, #f2f2f2)
+  );
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 400% 100%;
+  -webkit-animation: v-skeleton-loading 1.4s ease infinite;
+  animation: v-skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes v-skeleton-loading {
+  0% {
+      background-position: 100% 50%;
+  }
+
+  100% {
+      background-position: 0 50%;
+  }
 }
 
 /* New Hamburger Menu */

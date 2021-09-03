@@ -62,6 +62,21 @@ const updateOrderData = async params => {
     }
 };
 
+const reschedule = async params => {
+    console.log("calledd Salon service");
+    try {
+        const response = await orderRepo.reschedule(params);
+        console.log("response", response);
+        if (response) {
+            return { status: 1, message: UPDATE_SUCCESS, data: response };
+        } else {
+            return { status: 0, message: UPDATE_FAILED };
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 const deleteOrderData = async params => {
     console.log("calledd Salon service");
     try {
@@ -123,5 +138,6 @@ module.exports = {
     getOrderData,
     createOrderData,
     updateOrderData,
-    deleteOrderData
+    deleteOrderData,
+    reschedule
 } 

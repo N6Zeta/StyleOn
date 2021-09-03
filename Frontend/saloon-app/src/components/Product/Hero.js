@@ -14,21 +14,32 @@ export default function Hero({ content, reviews, callingFrom }) {
         return (
             <>
                 <h1 className="prod-name H1-heading"> {name}</h1>
-                <RatingComponent value={rating} size = {30} starts = {5} />
+                <RatingComponent value={rating} size={30} starts={5} />
                 <div className="prod-price h2-heading">
-                    <span className="H2-heading"> {RS} {discounted_price} </span>
+                    <span className="H2-heading">
+                        {" "}
+                        {RS} {discounted_price}{" "}
+                    </span>
                     <strike>
-                        <span className="h3-heading"> {RS}{original_price} </span>
+                        <span className="h3-heading">
+                            {" "}
+                            {RS}
+                            {original_price}{" "}
+                        </span>
                     </strike>
                     <span className="h3-heading offer">
                         ({((original_price - discounted_price) / original_price) * 100}% off)
                     </span>
                 </div>
                 <div className="offer tax">{INCLUSIVE}</div>
-                {callingFrom === "product" && <div className="prod-brand h3-heading"> {SELLER} {brand_name}</div> }
-                
+                {callingFrom === "product" && (
+                    <div className="prod-brand h3-heading">
+                        {" "}
+                        {SELLER} {brand_name}
+                    </div>
+                )}
             </>
-         )
+        );
     }
 
 
