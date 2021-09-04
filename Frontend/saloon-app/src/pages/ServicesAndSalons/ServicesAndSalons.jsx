@@ -1,14 +1,16 @@
 import './ServicesAndSalons.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import HeroComponent from '../../components/HeroComponent/HeroComponent'
 import SalonCard from '../../components/SalonCard/SalonCard'
 import ServiceCard from '../../components/ServiceCard/ServiceCard'
 // import { services } from '../../serviceData'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { fetchServices } from '../../redux/appdata/appdata.actions'
+import {  } from 'react-redux'
 
 export default function ServicesAndSalons() {
-
-    const {services,salons} = useSelector(state=>state.appdata)
+    const dispatch = useDispatch()
+    var services,salons
     const [searchValue,setSearchValue] = useState('')
     const [filteredServices,setFilteredServices] = useState(services)
     const [filteredSalons,setFilteredSalons] = useState(salons)
@@ -23,6 +25,13 @@ export default function ServicesAndSalons() {
         setFilteredSalons(salons.filter(salon=>(salon.name.toLowerCase().includes(search )|| salon.description.toLowerCase().includes(search))))
        
     }
+    
+
+    useEffect(() => {
+        dispatch(fetchServices())
+        {services,salons} = useSelector(state=>state)
+       
+    }, [])
 
 
     return (

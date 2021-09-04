@@ -9,7 +9,8 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
-
+import MyProfile from './pages/MyProfile/MyProfile'
+import Checkout from './pages/checkout/Checkout'
 
 const Product = lazy(() => import("./pages/Product/Product"));
 const Spinner = lazy(() => import("./components/Spinner/Spinner"));
@@ -52,7 +53,7 @@ function App() {
                     <Redirect to="/home" />
                 </Route> */}
 
-                <Route exact path="/product/:slug">
+                <Route exact path="/product/:id">
                     <Product />
                 </Route>
 
