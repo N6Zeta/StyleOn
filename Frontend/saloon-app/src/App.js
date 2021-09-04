@@ -13,7 +13,9 @@ import MyProfile from './pages/MyProfile/MyProfile'
 import Checkout from './pages/checkout/Checkout'
 
 const Product = lazy(() => import("./pages/Product/Product"));
+const Service = lazy(() => import("./pages/Service/Service"));
 const Spinner = lazy(() => import("./components/Spinner/Spinner"));
+const Skeleton = lazy(() => import("./skeletons/IndividualProductSkeleton"));
 
 function App() {
     const dispatch = useDispatch();

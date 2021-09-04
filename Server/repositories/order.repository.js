@@ -39,6 +39,27 @@ const updateOrderData = async (params) => {
     return order;
 }
 
+const reschedule = async (params) => {
+    console.log("updateOrderData params", params)
+    let order;
+    try{
+        await orderModel.where('order_id','==', params.order_id)
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc=> {
+                doc.ref.update(params)
+                order =  {...doc.data(), ...params, id:doc.id}
+            });
+        })        
+        .catch(err => {
+            console.log(err)
+        })
+    }catch (e) { 
+        console.log(e);
+    }
+    return order;
+}
+
 const deleteOrderData = async (params) => {
     let order
     try{
@@ -64,7 +85,8 @@ module.exports = {
     getOrderData,
     createOrderData,
     updateOrderData,
-    deleteOrderData
+    deleteOrderData,
+    reschedule
 }
 
 

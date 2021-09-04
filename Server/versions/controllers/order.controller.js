@@ -37,6 +37,19 @@ const updateOrderData = async (req,res) => {
     return res.status(200).send(response);
 }
 
+const reschedule = async (req,res) => {
+    const params = req.params;
+    const queryParams = req.query;
+    const bodyParams = req.body;
+    const response = await orderServices.reschedule({
+        ...params,
+        ...queryParams,
+        ...bodyParams
+    });
+    return res.status(200).send(response);
+}
+
+
 const deleteOrderData = async (req,res) => {
     const params = req.params;
     const queryParams = req.query;
@@ -53,5 +66,6 @@ module.exports = {
     getOrderData,
     createOrderData,
     updateOrderData,
-    deleteOrderData
+    deleteOrderData,
+    reschedule
 }
