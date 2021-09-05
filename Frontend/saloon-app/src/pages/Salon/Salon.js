@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import Hero from "../../components/Product/Hero";
 import SalonHero from "../../components/Salon/SalonHero";
 import SalonOverview from "../../components/Salon/SalonOverview";
-import ServiceSkeleton from "../../skeletons/IndividualProductSkeleton";
+import SalonSkeleton from "../../skeletons/IndividualSalonSkeleton";
 import Recommendation from "../../components/Product/Recommendation";
 
 export default function Salon() {
@@ -49,11 +49,10 @@ export default function Salon() {
                 <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
                     <SalonHero content={salon[0]} callingFrom="salon" />
                     <SalonOverview content={salon[0]} reviews={reviews} />
-                    {/* <Hero content={salon[0]} reviews={reviews} callingFrom="salon" /> */}
                     <Recommendation recommendations={recommendations} callingFrom="salon" />
                 </div>
             ) : (
-                <ServiceSkeleton />
+                <SalonSkeleton />
             )}
         </>
     );
