@@ -16,7 +16,7 @@ app.use(cors());
 //Redirect to routes
 app.use("/.netlify/functions/api", versionRouter);
 
-// sendEmail("varunprabhakaran22@gmail.com");
+// sendPurchaseEmail("varunprabhakaran22@gmail.com");
 // checkToken();
 
 app.listen(PORT, () => {
