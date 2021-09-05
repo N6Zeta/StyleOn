@@ -2,14 +2,18 @@ import React from "react";
 import {RatingComponent}  from "../RatingComponent/RatingComponent";
 import Reviews from '../Product/Reviews'
 import {INCLUSIVE, RS, SELLER,  CUSTOMER_REVIEW} from '../../constants/productConstants'
-
+ 
 export default function Hero({ content, reviews, callingFrom }) {
     const { name, discounted_price, original_price, rating, brand_name, images } = content;
 
     const displayImages = () => {
-        return images.map((image, index) => <div className="bg-img" key={index} style={{ backgroundImage: "url(" +image+ ")"}}> </div>);
+        return images.map((image, index) => (
+            <div className="bg-img" key={index} style={{ backgroundImage: "url(" + image + ")" }}>
+                {" "}
+            </div>
+        ));
     };
-    
+
     const renderProductDetails = () => {
         return (
             <>
@@ -40,8 +44,7 @@ export default function Hero({ content, reviews, callingFrom }) {
                 )}
             </>
         );
-    }
-
+    };
 
     return (
         <>
@@ -50,7 +53,7 @@ export default function Hero({ content, reviews, callingFrom }) {
                 <div className="right-container">
                     {renderProductDetails()}
                     <hr className="divider"></hr>
-                    <Reviews reviews = {reviews} />
+                    <Reviews reviews={reviews} />
                 </div>
             </div>
             <style jsx>
@@ -60,14 +63,14 @@ export default function Hero({ content, reviews, callingFrom }) {
                         background-color: var(--dove);
                     }
 
-                    .product-hero-container .divider{
+                    .product-hero-container .divider {
                         width: 100%;
-                        margin-top:4rem;
+                        margin-top: 4rem;
                     }
 
-                    .product-hero-container .bg-img:hover{
+                    .product-hero-container .bg-img:hover {
                         transform: scale(1.2);
-                        cursor:pointer;
+                        cursor: pointer;
                     }
                     .product-hero-container .left-container {
                         width: 55vw;

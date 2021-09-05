@@ -78,7 +78,7 @@ button {
 /* Heading Tag Classes */
 
 h1, h2, h3, h4, h5 {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .h1-heading {
@@ -104,38 +104,49 @@ h1, h2, h3, h4, h5 {
 /* Bold */
 .H1-heading {
   font-size: 56px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H2-heading {
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H3-heading {
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H4-heading {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H5-heading {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H6-heading {
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Body Text Classes */
 
 .body-regular, .body-small, .body-caption {
   font-weight: 300;
+}
+
+
+.body-xlarge {
+  font-size: 40px;
+  color: var(--carbon);
+}
+
+.body-large {
+  font-size: 30px;
+  color: var(--carbon);
 }
 
 .body-regular {
@@ -809,7 +820,7 @@ display: none !important;
   .f-m {
       display: flex;
   }
-  
+   
   .f-vt-m {
       flex-direction: column;
   }

@@ -16,7 +16,7 @@ import Checkout from "./pages/checkout/Checkout";
 
 const Product = lazy(() => import("./pages/Product/Product"));
 const Service = lazy(() => import("./pages/Service/Service"));
-const Spinner = lazy(() => import("./components/Spinner/Spinner"));
+const Salon = lazy(() => import("./pages/Salon/Salon"));
 const Skeleton = lazy(() => import("./skeletons/IndividualProductSkeleton"));
 
 function App() {
@@ -64,7 +64,7 @@ function App() {
                     <Checkout />
                 </Route>
 
-                <Route path="/">
+                <Route exact path="/">
                     <Redirect to="/home" />
                 </Route>
 
@@ -74,6 +74,10 @@ function App() {
 
                 <Route exact path="/service/:slug">
                     <Service />
+                </Route>
+
+                <Route exact path="/salon/:slug">
+                    <Salon />
                 </Route>
 
                 <Route exact path="/skeleton">
