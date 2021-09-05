@@ -9,6 +9,10 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
+import "./App.css";
+import { fetchProducts, fetchServices } from "./redux/appdata/appdata.actions";
+import MyProfile from "./pages/MyProfile/MyProfile";
+import Checkout from "./pages/checkout/Checkout";
 
 const Product = lazy(() => import("./pages/Product/Product"));
 const Service = lazy(() => import("./pages/Service/Service"));
@@ -19,6 +23,9 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(fetchProducts());
+        dispatch(fetchServices());
+
         const logOutUser = auth.onAuthStateChanged(async user => {
             if (user) {
                 const { displayName, email } = user;
@@ -49,9 +56,17 @@ function App() {
                     <ServicesAndSalons />
                 </Route>
 
-                {/* <Route path="/">
+                <Route exact path="/user">
+                    <MyProfile />
+                </Route>
+
+                <Route exact path="/checkout">
+                    <Checkout />
+                </Route>
+
+                <Route path="/">
                     <Redirect to="/home" />
-                </Route> */}
+                </Route>
 
                 <Route exact path="/product/:slug">
                     <Product />
@@ -65,7 +80,6 @@ function App() {
                     <Skeleton />
                 </Route>
             </Switch>
-
             <Footer />
         </Suspense>
     );
