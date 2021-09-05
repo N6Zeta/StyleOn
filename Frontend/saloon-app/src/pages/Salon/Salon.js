@@ -47,8 +47,8 @@ export default function Salon() {
         <>
             {!isLoading ? (
                 <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
-                    <SalonHero content={salon[0]} reviews={reviews} callingFrom="salon" />
-                    <SalonOverview />
+                    <SalonHero content={salon[0]} callingFrom="salon" />
+                    <SalonOverview content={salon[0]} reviews={reviews} />
                     {/* <Hero content={salon[0]} reviews={reviews} callingFrom="salon" /> */}
                     <Recommendation recommendations={recommendations} callingFrom="salon" />
                 </div>
