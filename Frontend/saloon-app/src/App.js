@@ -9,8 +9,8 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
-import MyProfile from './pages/MyProfile/MyProfile'
-import Checkout from './pages/checkout/Checkout'
+import MyProfile from "./pages/MyProfile/MyProfile";
+import Checkout from "./pages/checkout/Checkout";
 
 const Product = lazy(() => import("./pages/Product/Product"));
 const Service = lazy(() => import("./pages/Service/Service"));
@@ -18,63 +18,71 @@ const Spinner = lazy(() => import("./components/Spinner/Spinner"));
 const Skeleton = lazy(() => import("./skeletons/IndividualProductSkeleton"));
 
 function App() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        const logOutUser = auth.onAuthStateChanged(async user => {
-            if (user) {
-                const { displayName, email } = user;
-                dispatch(setCurrentUser({ name: displayName, email: email }));
-            } else {
-                dispatch(setCurrentUser({ name: null, email: null }));
-            }
+  useEffect(() => {
+    const logOutUser = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const { displayName, email } = user;
+        dispatch(setCurrentUser({ name: displayName, email: email }));
+      } else {
+        dispatch(setCurrentUser({ name: null, email: null }));
+      }
 
-            return () => {
-                logOutUser();
-            };
-        });
-    }, []);
+      return () => {
+        logOutUser();
+      };
+    });
+  }, []);
 
-    return (
-        <Suspense fallback={<div>Loading... </div>}>
-            <Header />
-            <Switch>
-                <Route exact path="/home">
-                    <HomePage />
-                </Route>
+  return (
+    <Suspense fallback={<div>Loading... </div>}>
+      <Header />
+      <Switch>
+        <Route exact path="/home">
+          <HomePage />
+        </Route>
 
-                <Route exact path="/login">
-                    <Login />
-                </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
 
-                <Route exact path="/services">
-                    <ServicesAndSalons />
-                </Route>
+        <Route exact path="/services">
+          <ServicesAndSalons />
+        </Route>
 
-                {/* <Route path="/">
+        {/* <Route path="/">
                     <Redirect to="/home" />
                 </Route> */}
 
-                <Route exact path="/product/:id">
-                    <Product />
-                </Route>
-
-                <Route exact path='/user'>
-          <MyProfile/>
+        <Route exact path="/product/:id">
+          <Product />
         </Route>
 
-        <Route exact path='/checkout'>
-          <Checkout/>
+        <Route exact path="/user">
+          <MyProfile />
         </Route>
 
-      <Route path='/'>
-        <Redirect to='/home'/>
+        <Route exact path="/service/:slug">
+          <Service />
         </Route>
-            </Switch>
 
-            <Footer />
-        </Suspense>
-    );
+        <Route exact path="/skeleton">
+          <Skeleton />
+        </Route>
+
+        <Route exact path="/checkout">
+          <Checkout />
+        </Route>
+
+        <Route path="/">
+          <Redirect to="/home" />
+        </Route>
+      </Switch>
+
+      <Footer />
+    </Suspense>
+  );
 }
 
 export default App;

@@ -1,74 +1,78 @@
-import './ServicesAndSalons.css'
-import { useState,useEffect } from 'react'
-import HeroComponent from '../../components/HeroComponent/HeroComponent'
-import SalonCard from '../../components/SalonCard/SalonCard'
-import ServiceCard from '../../components/ServiceCard/ServiceCard'
+import "./ServicesAndSalons.css";
+import { useState, useEffect } from "react";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, SearchBox, Hits, Index } from "react-instantsearch-dom";
+
 // import { services } from '../../serviceData'
-import { useSelector,useDispatch } from 'react-redux'
-import { fetchServices } from '../../redux/appdata/appdata.actions'
-import {  } from 'react-redux'
+import { useDispatch } from "react-redux";
+import { fetchServices } from "../../redux/appdata/appdata.actions";
+import CollectionContainer from "../../components/CollectionContainer/CollectionContainer";
+import SalonCard from "../../components/SalonCard/SalonCard";
+import ServiceCard from "../../components/ServiceCard/ServiceCard";
 
 export default function ServicesAndSalons() {
-    const dispatch = useDispatch()
-    var services,salons
-    const [searchValue,setSearchValue] = useState('')
-    const [filteredServices,setFilteredServices] = useState(services)
-    const [filteredSalons,setFilteredSalons] = useState(salons)
+  const dispatch = useDispatch();
 
+  const searchClient = algoliasearch(
+    "E6A0E7IL4I",
+    "3664c02b57a55b7a29c8830f52bd9d9c"
+  );
 
-    function filteredItems(e){
+  //   function filteredItems(e) {
+  //     let search = e.target.value.toLowerCase();
+  //     setSearchValue(search);
+  //     setFilteredServices(
+  //       services.filter(
+  //         (service) =>
+  //           service.name.toLowerCase().includes(search) ||
+  //           service.description.toLowerCase().includes(search)
+  //       )
+  //     );
 
-        let search = e.target.value.toLowerCase()
-        setSearchValue(search)
-        setFilteredServices(services.filter(service=>(service.name.toLowerCase().includes(search)|| service.description.toLowerCase().includes(search))))
+  //     setFilteredSalons(
+  //       salons.filter(
+  //         (salon) =>
+  //           salon.name.toLowerCase().includes(search) ||
+  //           salon.description.toLowerCase().includes(search)
+  //       )
+  //     );
+  //   }
 
-        setFilteredSalons(salons.filter(salon=>(salon.name.toLowerCase().includes(search )|| salon.description.toLowerCase().includes(search))))
-       
-    }
-    
+  useEffect(() => {
+    dispatch(fetchServices());
+  }, []);
 
-    useEffect(() => {
-        dispatch(fetchServices())
-        {services,salons} = useSelector(state=>state)
-       
-    }, [])
+  return (
+    <div className="services-and-salons-main">
+      <InstantSearch indexName="Grooming_service" searchClient={searchClient}>
+        <HeroComponent
+          imageUrl="https://wallpaperaccess.com/full/1190372.jpg"
+          title="Best In Market !!"
+        >
+          {/* <input
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}
+          type="text"
+          placeholder="Search Here . . ."
+        /> */}
 
+          <SearchBox />
+        </HeroComponent>
+        <Index indexName="Grooming_service">
+          <h2>Services</h2>
+          <div className="items-grid">
+            <Hits hitComponent={ServiceCard} />
+          </div>
+        </Index>
 
-    return (
-        <div className='services-and-salons-main'>
-            <HeroComponent imageUrl='https://wallpaperaccess.com/full/1190372.jpg' title='Best In Market !!'>
-               
-                <input onChange={(e)=>filteredItems(e)} value={searchValue} type="text" placeholder='Search Here . . .' />
-                <button>Search</button>
-            </HeroComponent>
-            {filteredServices.length?<h1>Services</h1>:null}
-
-            <div className='items-grid'>
-              {
-                  filteredServices.length?filteredServices.map(service=>(
-                      <ServiceCard card={service}/>
-                  )):null
-
-    
-              }
-             
-
-            </div>
-            {filteredSalons.length?<h1>Salon</h1>:null}
-           
-
-           <div className='items-grid'>
-            {
-                  filteredSalons.length>0?filteredSalons.map(salon=>(
-                      <SalonCard imageUrl='https://i1.wp.com/cdn.whatsuplife.in/delhi/blog/2020/11/total.jpg' card={salon}/>
-                  )):null
-
-    
-              }  
-               
-               
-               </div>   
-            
-        </div>
-    )
+        <Index indexName="Salon">
+          <h2>Salons</h2>
+          <div className="items-grid">
+            <Hits hitComponent={SalonCard} />
+          </div>
+        </Index>
+      </InstantSearch>
+    </div>
+  );
 }
