@@ -5,14 +5,16 @@ import {RatingComponent}  from "../RatingComponent/RatingComponent";
 
 export default function Reviews({reviews}) {
     const renderCustomerReviews = () => {
-        return (reviews.map(review => {
+        return reviews.map(review => {
             return (
                 <>
-                    <span className=" body-regular rating"> {review.rating} </span> <RatingComponent value={review.rating} size = {21} stars= {1}/> <span className="rev-title body-regular"> {review.title}</span>
+                    <span className=" body-regular rating"> {review.rating} </span>{" "}
+                    <RatingComponent value={review.rating} size={21} stars={1} />{" "}
+                    <span className="rev-title body-regular"> {review.title}</span>
                     <div className="rev-desc body-small"> {review.review}</div>
                 </>
-            )
-        }))
+            );
+        }); 
     }
 
     return (

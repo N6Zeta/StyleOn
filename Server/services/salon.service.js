@@ -42,7 +42,13 @@ const getSalonByID = async (params) => {
         }
 
         if (response) {
-            return { status: 1, message: GET_SUCCESS, service:response, reviews: reviewResponse, recommendations:recommendationResponse};
+            return {
+                status: 1,
+                message: GET_SUCCESS,
+                salon: response,
+                reviews: reviewResponse,
+                recommendations: recommendationResponse,
+            };
         } else {
             return { status: 0, message: GET_FAILED };
         }
