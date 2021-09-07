@@ -1,0 +1,30 @@
+.userpage-main {
+  display: flex;
+  width: 90vw;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.userpage-div1 {
+  display: flex;
+  flex-direction: column;
+  padding: 2vw;
+  margin: 1vw 2vw 2vh 2vw;
+  /* width: fit-content; */
+  border: 1px solid rgb(207, 199, 199);
+  height: 70vh;
+  box-shadow: 0 3px 1px gray;
+}
+
+.userpage-div1 p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+  border-bottom: 1px solid rgb(80, 78, 78);
+  width: 10vw;
+  padding: 0.5vw;
+  cursor: pointer;
+}
+
+.userpage-div1 .selected-component {
+  font-weight: bold;
+}

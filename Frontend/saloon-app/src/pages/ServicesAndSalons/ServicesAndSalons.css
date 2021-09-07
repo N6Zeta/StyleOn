@@ -21,3 +21,7 @@
   margin: auto 5vw;
   margin-bottom: 25vh;
 }
+
+.ais-Hits-item::marker {
+  color: white;
+}
