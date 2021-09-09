@@ -1,0 +1,31 @@
+.order-container{
+    min-height: 70vh;
+}
+
+.order-container .order-left{
+    /* width:20vw;
+    border: 1px solid red; */
+}
+
+.order-container .order-right{
+    width:100%;
+} 
+
+
+.order-container .order-card{
+    border: 1px solid var(--snowfall);
+    margin:2rem 0;
+    padding:1rem 2rem;
+    height: auto;
+}
+
+.order-card .individual-order{
+    border: 1px solid var(--snowfall);
+    margin:2rem 0;
+    padding:1rem;
+}
+
+.order-card .individual-order .order-image{
+    height: 100px;
+    width: 100px;
+}
