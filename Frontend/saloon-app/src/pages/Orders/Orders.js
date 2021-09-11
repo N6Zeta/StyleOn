@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo, useCallback } from "react"
 import { useLocation } from "react-router";
 import { G_API_URL } from "../../constants/constants";
 import {FAILED, ON_PROCESS, SCHEDULED, DELIVERED, RATE_AND_REVIEW, PRODUCT, SERVICE} from "../../constants/orderConstants"
-import UserReview from '../../components/Orders/UserRating'
 import { Rating } from 'react-simple-star-rating'
 import axios from "axios";
 import Star from '../../assets/icons/star.svg'
@@ -91,7 +90,7 @@ export default function OrderHistory() {
       else
        obj.product_id = p.product_id
       setProduct(obj)
-      setIsModalOpen(true)
+      setIsModalOpen(true) 
     }
   
     console.log("productPresent", productPresent)

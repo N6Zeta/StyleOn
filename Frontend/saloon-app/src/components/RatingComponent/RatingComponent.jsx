@@ -9,5 +9,5 @@ export function RatingComponent({value, size, stars}) {
 }
 
  
-
+ 
 
