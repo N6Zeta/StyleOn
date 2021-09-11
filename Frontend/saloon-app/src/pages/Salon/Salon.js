@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { G_API_URL } from "../../constants/constants";
 import { useLocation } from "react-router";
-import Hero from "../../components/Product/Hero";
 import SalonHero from "../../components/Salon/SalonHero";
 import SalonOverview from "../../components/Salon/SalonOverview";
 import SalonSkeleton from "../../skeletons/IndividualSalonSkeleton";
 import Recommendation from "../../components/Product/Recommendation";
+import Layout from '../../components/Layout'
 
 export default function Salon() {
   let locationProps = useLocation();
@@ -45,7 +45,7 @@ export default function Salon() {
   // console.log("serviceDetails", salonDetails);
 
   return (
-    <>
+    <Layout>
       {!isLoading ? (
         <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
           <SalonHero content={salon[0]} callingFrom="salon" />
@@ -58,6 +58,6 @@ export default function Salon() {
       ) : (
         <SalonSkeleton />
       )}
-    </>
+    </Layout>
   );
 }

@@ -2,7 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import axios from 'axios'
-import {G_API_URL} from "../constants/constants"
+import {G_API_URL,COOKIE_PREFIX } from "../constants/constants"
+import {__setCookie} from '../util/cookie.util'
 
 var token;
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -46,6 +47,8 @@ const saveLoginDetails = async (userDetails)=>{
 
     await axios.post(G_API_URL + "/user/create", data)
     .then((res)=>{
+        console.log("set cookies")
+        __setCookie(COOKIE_PREFIX+"ut", token, 1, "month");
         console.log(res)
     })
     .catch((err)=>{

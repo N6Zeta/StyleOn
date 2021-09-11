@@ -50,7 +50,7 @@ export default function Hero({ content, reviews, callingFrom }) {
         style={{ backgroundImage: "url(" + image + ")" }}
       >
         {" "}
-      </div>
+      </div> 
     ));
   };
 

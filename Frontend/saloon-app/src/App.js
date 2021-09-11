@@ -9,7 +9,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
-import MyProfile from "./pages/MyProfile/MyProfile";
+import Default404 from "./pages/DefaultPages/Default404";
 import Checkout from "./pages/checkout/Checkout";
 // import MyOrders from "./pages/MyOrders/MyOrders";
 import UserPage from "./pages/UserPage/UserPage";
@@ -19,10 +19,11 @@ const Service = lazy(() => import("./pages/Service/Service"));
 const Salon = lazy(() => import("./pages/Salon/Salon"));
 const Orders = lazy(() => import("./pages/Orders/Orders"))
 const Skeleton = lazy(() => import("./skeletons/OrderSkeleton"));
+const Default403 = lazy(() => import("./pages/DefaultPages/Default403"));
 
-function App() {
-  const dispatch = useDispatch();
-
+function App() { 
+  const dispatch = useDispatch(); 
+ 
   useEffect(() => {
     const logOutUser = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -40,7 +41,6 @@ function App() {
 
   return (
     <Suspense fallback={<div>Loading... </div>}>
-      <Header />
       <Switch>
         <Route exact path="/home">
           <HomePage />
@@ -82,13 +82,21 @@ function App() {
           <Salon />
         </Route>
 
+        <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/forbidden-access`}
+            component={Default403}
+        />
+        
+
         <Route path="/">
           <Redirect to="/home" />
         </Route>
-      </Switch>
 
-      <Footer />
-    </Suspense>
+        <Route exact component={Default404} />
+
+      </Switch>
+    </Suspense> 
   );
 }
 

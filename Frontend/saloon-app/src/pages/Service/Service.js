@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import Hero from "../../components/Product/Hero";
 import ServiceSkeleton from "../../skeletons/IndividualProductSkeleton";
 import Recommendation from "../../components/Product/Recommendation";
+import Layout from '../../components/Layout'
 
 export default function Service() {
   let locationProps = useLocation();
@@ -43,7 +44,7 @@ export default function Service() {
   console.log("serviceDetails", serviceDetails);
 
   return (
-    <>
+    <Layout>
       {!isLoading ? (
         <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
           <Hero content={service[0]} reviews={reviews} callingFrom="service" />
@@ -52,6 +53,6 @@ export default function Service() {
       ) : (
         <ServiceSkeleton />
       )}
-    </>
+    </Layout>
   );
 }

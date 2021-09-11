@@ -1,11 +1,13 @@
 import { useEffect, useState, useMemo, useCallback } from "react"
 import { useLocation } from "react-router";
-import { G_API_URL } from "../../constants/constants";
+import { G_API_URL, G_HOME_URL, COOKIE_PREFIX } from "../../constants/constants";
 import {FAILED, ON_PROCESS, SCHEDULED, DELIVERED, RATE_AND_REVIEW, PRODUCT, SERVICE} from "../../constants/orderConstants"
 import { Rating } from 'react-simple-star-rating'
 import axios from "axios";
 import Star from '../../assets/icons/star.svg'
 import Skeleton from "../../skeletons/OrderSkeleton"
+import { __getCookie } from "../../util/cookie.util";
+import Layout from '../../components/Layout'
 import "../Orders/Orders.css";
 
 export default function OrderHistory() {
@@ -30,6 +32,9 @@ export default function OrderHistory() {
     let uid = locationProps.pathname.split("/")[2];
     let orderDetail = [];
     const data = {
+      headers: {
+        "Authorization": __getCookie(COOKIE_PREFIX + "ut").cookieValue
+      },
       params: {
         uid: uid,
       },
@@ -40,7 +45,12 @@ export default function OrderHistory() {
         console.log("response order", response.data);
         orderDetail = response.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        if (err.response.status === 403) {
+          window.location.href = G_HOME_URL + 'forbidden-access'
+        }
+      })
 
     setOrderDetails(orderDetail);
     setIsLoading(false);
@@ -205,7 +215,7 @@ export default function OrderHistory() {
   
 
   return (
-    <>
+    <Layout>
       { !isLoading ? 
         <div className="order-container lr-pad-d lr-pad-m f-d f-h-sb tb-pad-d tb-pad-m">
           <div className= {`${isModalOpen === true  ?  "order-right-bg"  :  "order-right" }`}>
@@ -230,6 +240,6 @@ export default function OrderHistory() {
       :
         <Skeleton /> 
       }
-    </>
+    </Layout>
   );  
 }

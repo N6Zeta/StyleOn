@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import Hero from "../../components/Product/Hero";
 import ProductSkeleton from "../../skeletons/IndividualProductSkeleton";
 import Recommendation from "../../components/Product/Recommendation";
+import Layout from '../../components/Layout'
 
 export default function Product() {
     let locationProps = useLocation();
@@ -40,7 +41,7 @@ export default function Product() {
     const { product, reviews, recommendations } = productDetails;
 
     return (
-        <>
+        <Layout>
             {!isLoading ? (
                 <div className="product-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
                     <Hero content={product[0]} reviews={reviews} callingFrom="product" />
@@ -49,6 +50,6 @@ export default function Product() {
             ) : (
                 <ProductSkeleton />
             )}
-        </>
+        </Layout>
     );
 }
