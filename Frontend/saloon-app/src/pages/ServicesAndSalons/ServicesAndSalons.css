@@ -1,12 +1,27 @@
-.services-and-salons-main .items-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(25vw,1fr));
-    padding: 5vw;
-    gap: 2%;
-    margin-bottom: 15vh;
+.services-and-salons-main > h2 {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 1px 1px gray;
 }
-.services-and-salons-main > h1{
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-decoration: underline;
+
+.ais-SearchBox-input {
+  width: 100%;
+  padding: 4%;
+}
+.ais-SearchBox {
+  width: 30%;
+}
+
+.services-and-salons-main .ais-Hits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  /* padding: 5vw; */
+  gap: 2%;
+  width: 90vw;
+  margin: auto 5vw;
+  margin-bottom: 25vh;
+}
+
+.ais-Hits-item::marker {
+  color: white;
 }

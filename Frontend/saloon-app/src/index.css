@@ -27,6 +27,7 @@ a {
   --joy: #f0af36;
   --go: #27ae60;
   --tomato: #EB2F06;
+  --primary:#1739E6;
 
   --peaky-shadow-nav: 0px 5px 11px 0px rgba(50, 50, 50, 0.08);
   --peaky-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08);
@@ -78,7 +79,7 @@ button {
 /* Heading Tag Classes */
 
 h1, h2, h3, h4, h5 {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .h1-heading {
@@ -104,38 +105,49 @@ h1, h2, h3, h4, h5 {
 /* Bold */
 .H1-heading {
   font-size: 56px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H2-heading {
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H3-heading {
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H4-heading {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H5-heading {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .H6-heading {
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Body Text Classes */
 
 .body-regular, .body-small, .body-caption {
   font-weight: 300;
+}
+
+
+.body-xlarge {
+  font-size: 40px;
+  color: var(--carbon);
+}
+
+.body-large {
+  font-size: 30px;
+  color: var(--carbon);
 }
 
 .body-regular {
@@ -518,6 +530,12 @@ grid-auto-flow: column;
   border-radius: var(--peaky-br-2);
 }
 
+.skeleton-image-small {
+  height: 100px;
+  border-radius: var(--peaky-br-2);
+}
+
+
 .skeleton-video {
   height: 200px;
   border-radius: var(--peaky-br-4);
@@ -618,6 +636,7 @@ grid-auto-flow: column;
 .skeleton-heading-36,
 .skeleton-paragraph,
 .skeleton-image,
+.skeleton-image-small,
 .skeleton-video,
 .skeleton-icon,
 .skeleton-square,
@@ -809,7 +828,7 @@ display: none !important;
   .f-m {
       display: flex;
   }
-  
+   
   .f-vt-m {
       flex-direction: column;
   }

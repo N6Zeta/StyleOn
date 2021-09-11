@@ -1,7 +1,0 @@
-.services-main{
-    margin: 1vh auto;
-    display: grid;
-    width: 80vw;
-    grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
-    gap: 2vw;
-}

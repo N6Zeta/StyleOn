@@ -7,50 +7,51 @@ import ServiceSkeleton from "../../skeletons/IndividualProductSkeleton";
 import Recommendation from "../../components/Product/Recommendation";
 
 export default function Service() {
-    let locationProps = useLocation();
-    const [serviceDetails, setServiceDetails] = useState({
-        service: {},
-        reviews: {},
-        recommendations: {},
-    });
-    const [isLoading, setIsLoading] = useState(true);
+  let locationProps = useLocation();
+  const [serviceDetails, setServiceDetails] = useState({
+    service: {},
+    reviews: {},
+    recommendations: {},
+  });
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        fetchservice();
-    }, []);
+  useEffect(() => {
+    fetchservice();
+  }, []);
 
-    const fetchservice = async () => {
-        let service_id = locationProps.pathname.split("/")[2];
-        let serviceDetails = [];
-        const data = {
-            params: {
-                service_id: service_id,
-            },
-        };
-        await axios
-            .get(G_API_URL + "/service/id", data)
-            .then(response => {
-                serviceDetails = response.data;
-            })
-            .catch(err => console.log(err));
-
-        setServiceDetails(serviceDetails);
-        setIsLoading(false);
+  const fetchservice = async () => {
+    let service_id = locationProps.pathname.split("/")[2];
+    let serviceDetail = [];
+    const data = {
+      params: {
+        service_id: service_id,
+      },
     };
+    await axios
+      .get(G_API_URL + "/service/id", data)
+      .then((response) => {
+        console.log("response", response.data);
+        serviceDetail = response.data;
+      })
+      .catch((err) => console.log(err));
 
-    const { service, reviews, recommendations } = serviceDetails;
-    console.log("serviceDetails", serviceDetails);
+    setServiceDetails(serviceDetail);
+    setIsLoading(false);
+  };
 
-    return (
-        <>
-            {!isLoading ? (
-                <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
-                    <Hero content={service[0]} reviews={reviews} callingFrom="service" />
-                    <Recommendation recommendations={recommendations} />
-                </div>
-            ) : (
-                <ServiceSkeleton />
-            )}
-        </>
-    );
+  const { service, reviews, recommendations } = serviceDetails;
+  console.log("serviceDetails", serviceDetails);
+
+  return (
+    <>
+      {!isLoading ? (
+        <div className="service-container lr-pad-d lr-pad-m tb-pad-d tb-pad-m">
+          <Hero content={service[0]} reviews={reviews} callingFrom="service" />
+          <Recommendation recommendations={recommendations} />
+        </div>
+      ) : (
+        <ServiceSkeleton />
+      )}
+    </>
+  );
 }

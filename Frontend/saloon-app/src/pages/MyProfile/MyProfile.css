@@ -1,0 +1,11 @@
+.myprofile-main {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+  margin-left: 2vw;
+  border: 1px solid rgb(207, 199, 199);
+  margin: 1vw 2vw 2vh 2vw;
+  padding: 2vw;
+  height: 70vh;
+  box-shadow: 0 3px 1px gray;
+}
