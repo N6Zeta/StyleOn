@@ -11,7 +11,6 @@ export default function OrderHistory() {
     user: [],
   });
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedComponent, setSelectedComponent] = useState("user");
 
   useEffect(() => {
     fetchOrderDetails();

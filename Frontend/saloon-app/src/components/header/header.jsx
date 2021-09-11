@@ -15,6 +15,10 @@ export default function Header() {
         history.push('/home')
     }
 
+    const redirectToOrder = ()=>{
+        history.push('/order')
+    }
+
     return (
         <div className='header-main'>
         <div className='header-contents'>   
@@ -30,6 +34,7 @@ export default function Header() {
         {userOptions?
         <div className='user-options'>
             <p>My Profile</p>
+            <p onClick={()=>redirectToOrder()} className='logout-button'>Orders</p>
             <p onClick={()=>logout()} className='logout-button'>Logout</p>
 
         </div>:null}

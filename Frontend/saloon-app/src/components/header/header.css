@@ -21,10 +21,9 @@
     cursor: pointer;
 }
 
-.header-contents p:hover{
+/* .header-contents p:hover{
     transform:scale(1.1)
-    
-}
+} */
 
 .login-link:hover{
     border-bottom: 1px solid white;
