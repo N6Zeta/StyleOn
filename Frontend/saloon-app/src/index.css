@@ -187,7 +187,8 @@ h1, h2, h3, h4, h5 {
 
 .button-secondary {
   background: var(--dove);
-  color: var(--facered);
+  color: var(--primary);
+  border: 1px solid var(--primary)
 }
 
 .face-btn {
@@ -195,7 +196,8 @@ h1, h2, h3, h4, h5 {
   justify-content: center;
   align-items: center;
   height: 50px;
-  color: var(--carbon);
+  color: var(--dove);
+  background-color: var(--primary);
   font-size: 16px;
   font-weight: 300;
   border-radius: 4px;

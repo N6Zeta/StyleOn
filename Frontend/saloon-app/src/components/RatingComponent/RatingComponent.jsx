@@ -1,4 +1,4 @@
-import { RatingView } from 'react-simple-star-rating'
+import { RatingView, Rating } from 'react-simple-star-rating'
 
 export function RatingComponent({value, size, stars}) {
      let color_code = value >= 4 ? "green" : value <=3 && value >=2 ? "yellow" : "red";
@@ -8,4 +8,6 @@ export function RatingComponent({value, size, stars}) {
     )
 }
 
-        
+ 
+
+

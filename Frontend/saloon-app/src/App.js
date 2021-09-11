@@ -11,13 +11,14 @@ import { setCurrentUser } from "./redux/user/user.actions";
 import ServicesAndSalons from "./pages/ServicesAndSalons/ServicesAndSalons";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Checkout from "./pages/checkout/Checkout";
-import MyOrders from "./pages/MyOrders/MyOrders";
+// import MyOrders from "./pages/MyOrders/MyOrders";
 import UserPage from "./pages/UserPage/UserPage";
 
 const Product = lazy(() => import("./pages/Product/Product"));
 const Service = lazy(() => import("./pages/Service/Service"));
 const Salon = lazy(() => import("./pages/Salon/Salon"));
-const Skeleton = lazy(() => import("./skeletons/IndividualProductSkeleton"));
+const Orders = lazy(() => import("./pages/Orders/Orders"))
+const Skeleton = lazy(() => import("./skeletons/OrderSkeleton"));
 
 function App() {
   const dispatch = useDispatch();
@@ -61,9 +62,9 @@ function App() {
           <UserPage />
         </Route>
 
-        {/* <Route exact path="/orders/:userid">
-          <MyOrders />
-        </Route> */}
+        <Route exact path="/orders/:userid">
+            <Orders />
+        </Route>
 
         <Route exact path="/service/:slug">
           <Service />

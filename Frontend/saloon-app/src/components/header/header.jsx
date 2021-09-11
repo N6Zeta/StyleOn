@@ -20,6 +20,8 @@ export default function Header() {
     history.push("/home");
   };
 
+  
+
   return (
     <div className="header-main">
       <div className="header-contents">
@@ -47,6 +49,9 @@ export default function Header() {
         <div className="user-options">
           <Link to="/user/7">
             <p onClick={() => setUserOptions(false)}>My Profile</p>
+          </Link>
+          <Link to="/orders/7">
+            <p onClick={() => setUserOptions(false)}>My Orders</p>
           </Link>
           <p onClick={() => logout()} className="logout-button">
             Logout

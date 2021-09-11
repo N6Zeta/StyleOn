@@ -10,13 +10,13 @@ export default function UserPage() {
     <div className="userpage-main">
       <div className="userpage-div1">
         <p
-          className={selectedComponent == "user" ? "selected-component" : ""}
+          className={selectedComponent === "user" ? "selected-component" : ""}
           onClick={() => setSelectedComponent("user")}
         >
           My Profile
         </p>
         <p
-          className={selectedComponent == "orders" ? "selected-component" : ""}
+          className={selectedComponent === "orders" ? "selected-component" : ""}
           onClick={() => setSelectedComponent("orders")}
         >
           My Orders

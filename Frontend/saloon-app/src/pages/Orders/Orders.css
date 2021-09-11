@@ -11,6 +11,10 @@
     width:100%;
 } 
 
+.order-container .order-right-bg{
+    opacity: 0.5;
+    width:100%;
+}
 
 .order-container .order-card{
     border: 1px solid var(--snowfall);
@@ -28,4 +32,45 @@
 .order-card .individual-order .order-image{
     height: 100px;
     width: 100px;
+}
+
+.rating-component .rate{
+    width:20px;
+    height:20px;
+    margin-right: 0.5rem;
+}
+
+.rating-component {
+    cursor: pointer;
+    color: var(--primary);
+}
+
+.review-modal-container {
+    position: fixed;
+    background-color: #fff;
+    width: 70%;
+    top:145%;
+    max-width: 400px;
+    left: 50%;
+    padding: 4rem;
+    border-radius: 5px;
+    border:1px solid var(--snowfall);
+    -webkit-transform: translate(-50%, -200%);
+    -ms-transform: translate(-50%, -200%);
+    transform: translate(-50%, -200%);
+    -webkit-transition: -webkit-transform 200ms ease-out;
+    transition: transform 200ms ease-out;
+}
+
+.review-modal-container  .review-title, .review-description{ 
+    margin:1rem 0;
+    height:50px;
+    width:100%;
+    border: 1px solid var(--snowfall);
+    padding: 0.5rem;
+    font-size: 21px;
+}
+
+.review-modal-container .review-description{
+    min-height:100px;
 }
